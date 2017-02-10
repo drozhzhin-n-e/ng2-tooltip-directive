@@ -12,10 +12,37 @@
 .ng-tooltip::after {
     content: "";
     position: absolute;
+    border-style: solid;
+}
+
+.ng-tooltip-top::after {
     top: 100%;
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
-    border-style: solid;
     border-color: black transparent transparent transparent;
-} 
+}
+
+.ng-tooltip-bottom::after {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: transparent transparent black transparent;
+}
+
+.ng-tooltip-left::after {
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent transparent transparent black;
+}
+
+.ng-tooltip-right::after {
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent black transparent transparent;
+}

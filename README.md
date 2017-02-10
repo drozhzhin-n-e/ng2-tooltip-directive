@@ -22,7 +22,13 @@ Import `Ng2Module`:
 
 ## Usage
     
-    <span tooltip="Tooltip">Tooltip on top</span>
+    <span tooltip="Tooltip" placement="top">Tooltip on top</span>
+
+## Properties
+
+| name             | type                                | description                   |
+|------------------|-------------------------------------|-------------------------------|
+| placement        | "top"|"bottom"|"left"|"right"       | The position of the tooltip.  |
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
