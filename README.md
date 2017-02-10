@@ -34,4 +34,4 @@ Import `Ng2Module`:
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Demo
-https://embed.plnkr.co/rlOO2AmqferSzMytVR7j/
+https://embed.plnkr.co/dcy6OKi3yfAWckqeAFkY/
