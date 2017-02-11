@@ -2,11 +2,11 @@ Tooltip allows the user to specify text to be displayed when the mouse hover ove
 
 ## Installation
 
-1. Install the npm package.
+1 Install the npm package.
 
     npm i ng2-tooltip-directive
         
-2. Import `Ng2Module`:
+2 Import `Ng2Module`:
 
     import { NgModule }         from '@angular/core';
     import { BrowserModule }    from '@angular/platform-browser';
@@ -20,7 +20,7 @@ Tooltip allows the user to specify text to be displayed when the mouse hover ove
     })
     export class AppModule { } 
 
-3. Add CSS styles
+3 Add CSS styles
 
 ## Usage
     
