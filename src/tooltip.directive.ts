@@ -8,9 +8,9 @@ export class TooltipDirective{
      
     constructor(private elementRef: ElementRef, private renderer: Renderer){}
 
-    elem: any;
+    tooltip: any;
     elemPosition: any;
-    tooltipHeight: number = 28;
+    tooltipOffset: number = 8;
 
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
@@ -22,7 +22,7 @@ export class TooltipDirective{
     }
  
     @HostListener("mouseleave") onMouseLeave() {
-        this.elem.remove();
+        this.tooltip.remove();
     }
 
     getElemPosition(){
@@ -30,38 +30,40 @@ export class TooltipDirective{
     }
 
     createElem(){
-        this.elem = document.createElement('span');
-        this.elem.className += "ng-tooltip ng-tooltip-"+this.placement;
-        this.elem.textContent = this.tooltipText;
-        return this.elem;
+        this.tooltip = document.createElement('span');
+        this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
+        this.tooltip.textContent = this.tooltipText;
+        return this.tooltip;
     }
 
     setPosition(){
-        let nativeElemHeight = this.elementRef.nativeElement.offsetHeight;
-        let nativeElemWidth = this.elementRef.nativeElement.offsetWidth;
+        let elemHeight = this.elementRef.nativeElement.offsetHeight;
+        let elemWidth = this.elementRef.nativeElement.offsetWidth;
+        let tooltipHeight = this.tooltip.offsetHeight;
+        let tooltipWidth = this.tooltip.offsetWidth;
 
         if (this.placement == 'top'){
-            this.elem.style.top = this.elemPosition.top - (this.tooltipHeight + 8)+'px';
+            this.tooltip.style.top = this.elemPosition.top - (tooltipHeight + this.tooltipOffset)+'px';
         }
 
         if (this.placement == 'bottom'){
-            this.elem.style.top = this.elemPosition.top + nativeElemHeight + 8 +'px';
+            this.tooltip.style.top = this.elemPosition.top + elemHeight + this.tooltipOffset +'px';
         }
 
         if (this.placement == 'top' || this.placement == 'bottom'){
-            this.elem.style.left = (this.elemPosition.left + nativeElemWidth/2) - this.elem.offsetWidth/2 +'px';
+            this.tooltip.style.left = (this.elemPosition.left + elemWidth/2) - tooltipWidth/2 +'px';
         }
 
         if (this.placement == 'left'){
-            this.elem.style.left = this.elemPosition.left - this.elem.offsetWidth - 8 +'px'; 
+            this.tooltip.style.left = this.elemPosition.left - tooltipWidth - this.tooltipOffset +'px'; 
         }
 
         if (this.placement == 'right'){
-            this.elem.style.left = this.elemPosition.left + nativeElemWidth + 8 +'px'; 
+            this.tooltip.style.left = this.elemPosition.left + elemWidth + this.tooltipOffset +'px'; 
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
-            this.elem.style.top = this.elemPosition.top + nativeElemHeight/2 - this.tooltipHeight/2+'px';
+            this.tooltip.style.top = this.elemPosition.top + elemHeight/2 - tooltipHeight/2+'px';
         }
     }
 }
