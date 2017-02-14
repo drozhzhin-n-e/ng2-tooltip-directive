@@ -24,16 +24,17 @@ Tooltip allows the user to specify text to be displayed when the mouse hover ove
 
 ## Usage
     
-    <span tooltip="Tooltip" placement="top">Tooltip on top</span>
+    <span tooltip="Tooltip" placement="top" delay="500">Tooltip on top</span>
 
 ## Properties
 
-| name             | type                                | description                   |
-|------------------|-------------------------------------|-------------------------------|
-| placement        | "top", "bottom", "left", "right"    | The position of the tooltip.  |
+| name             | type                                | description                                 |
+|------------------|-------------------------------------|---------------------------------------------|
+| placement        | "top", "bottom", "left", "right"    | The position of the tooltip.                |
+| delay            | number                              | The delay in ms before showing the tooltip. |
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Demo
-http://embed.plnkr.co/IiDGCNHpCzvfrHNd9IAU/
+https://embed.plnkr.co/wJ2uLCc42Ud3WJxKWUFR/

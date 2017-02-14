@@ -1,4 +1,4 @@
-import { Component, Directive, ElementRef, HostListener, Renderer, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
     selector: '[tooltip]'
@@ -6,7 +6,7 @@ import { Component, Directive, ElementRef, HostListener, Renderer, Input } from 
 
 export class TooltipDirective{
      
-    constructor(private elementRef: ElementRef, private renderer: Renderer){}
+    constructor(private elementRef: ElementRef){}
 
     tooltip: any;
     elemPosition: any;
@@ -14,6 +14,7 @@ export class TooltipDirective{
 
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
+    @Input() delay = 0; 
 
     @HostListener("mouseenter") onMouseEnter() {
         this.getElemPosition();
@@ -33,6 +34,10 @@ export class TooltipDirective{
         this.tooltip = document.createElement('span');
         this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
         this.tooltip.textContent = this.tooltipText;
+        setTimeout(() => {  
+            this.tooltip.className += " ng-tooltip-show";
+        }, this.delay);
+
         return this.tooltip;
     }
 
