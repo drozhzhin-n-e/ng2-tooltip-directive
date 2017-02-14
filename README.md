@@ -36,4 +36,4 @@ Tooltip allows the user to specify text to be displayed when the mouse hover ove
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Demo
-https://embed.plnkr.co/DAvgAsyDtNfrcbDawAJQ/
+http://embed.plnkr.co/IiDGCNHpCzvfrHNd9IAU/
