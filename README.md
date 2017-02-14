@@ -37,4 +37,4 @@ Tooltip allows the user to specify text to be displayed when the mouse hover ove
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Demo
-https://embed.plnkr.co/wJ2uLCc42Ud3WJxKWUFR/
+https://embed.plnkr.co/6b6rf5dPFGjxRrtbuDPu/

@@ -44,7 +44,7 @@ export class TooltipDirective{
     setPosition(){
         let elemHeight = this.elementRef.nativeElement.offsetHeight;
         let elemWidth = this.elementRef.nativeElement.offsetWidth;
-        let tooltipHeight = this.tooltip.offsetHeight;
+        let tooltipHeight = this.tooltip.clientHeight;
         let tooltipWidth = this.tooltip.offsetWidth;
 
         if (this.placement == 'top'){
@@ -68,7 +68,7 @@ export class TooltipDirective{
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
-            this.tooltip.style.top = this.elemPosition.top + elemHeight/2 - tooltipHeight/2+'px';
+            this.tooltip.style.top = this.elemPosition.top + elemHeight/2 - this.tooltip.clientHeight/2+'px';
         }
     }
 }
