@@ -1,4 +1,4 @@
-Tooltip allows the user to specify text to be displayed when the mouse hover over an element.
+Angular2 tooltip directive.
 
 ## Installation
 
