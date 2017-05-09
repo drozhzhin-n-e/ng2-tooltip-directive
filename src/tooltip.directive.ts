@@ -16,13 +16,17 @@ export class TooltipDirective{
     @Input() placement = "top";
     @Input() delay = 0; 
 
-    @HostListener("mouseenter") onMouseEnter() {
+    @HostListener("focusin")
+    @HostListener("mouseenter")
+    onMouseEnter() {
         this.getElemPosition();
         document.body.appendChild(this.createElem());
         this.setPosition();
     }
  
-    @HostListener("mouseleave") onMouseLeave() {
+    @HostListener("focusout")
+    @HostListener("mouseleave")
+    onMouseLeave() {
         this.tooltip.remove();
     }
 
@@ -48,11 +52,11 @@ export class TooltipDirective{
         let tooltipWidth = this.tooltip.offsetWidth;
 
         if (this.placement == 'top'){
-            this.tooltip.style.top = this.elemPosition.top - (tooltipHeight + this.tooltipOffset)+'px';
+            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) - (tooltipHeight + this.tooltipOffset)+'px';
         }
 
         if (this.placement == 'bottom'){
-            this.tooltip.style.top = this.elemPosition.top + elemHeight + this.tooltipOffset +'px';
+            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) + elemHeight + this.tooltipOffset +'px';
         }
 
         if (this.placement == 'top' || this.placement == 'bottom'){
@@ -68,7 +72,7 @@ export class TooltipDirective{
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
-            this.tooltip.style.top = this.elemPosition.top + elemHeight/2 - this.tooltip.clientHeight/2+'px';
+            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) + elemHeight/2 - this.tooltip.clientHeight/2+'px';
         }
     }
 }
