@@ -22,6 +22,8 @@ Angular2 tooltip directive.
 
 3 Add CSS styles
 
+Example CSS: https://github.com/drozhzhin-n-e/ng2-tooltip-directive/blob/master/example/src/styles.css
+
 ## Usage
     
     <span tooltip="Tooltip" placement="top" delay="500">Tooltip on top</span>
@@ -32,9 +34,10 @@ Angular2 tooltip directive.
 |------------------|-------------------------------------|---------------------------------------------|
 | placement        | "top", "bottom", "left", "right"    | The position of the tooltip.                |
 | delay            | number                              | The delay in ms before showing the tooltip. |
+| z-index          | number                              | Z-index of the tooltip.                     |
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Demo
-https://embed.plnkr.co/6b6rf5dPFGjxRrtbuDPu/
+http://crystalui.org/components/tooltip

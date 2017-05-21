@@ -15,6 +15,7 @@ export class TooltipDirective{
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
     @Input() delay = 0; 
+    @Input('z-index') zIndex = false;
 
     @HostListener("focusin")
     @HostListener("mouseenter")
@@ -27,7 +28,7 @@ export class TooltipDirective{
     @HostListener("focusout")
     @HostListener("mouseleave")
     onMouseLeave() {
-        this.tooltip.remove();
+        this.removeElem();
     }
 
     getElemPosition(){
@@ -35,14 +36,24 @@ export class TooltipDirective{
     }
 
     createElem(){
+        if (this.tooltip) this.tooltip.remove();
         this.tooltip = document.createElement('span');
         this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
         this.tooltip.textContent = this.tooltipText;
+        if (this.zIndex) this.tooltip.style.zIndex = this.zIndex;
+        
         setTimeout(() => {  
             this.tooltip.className += " ng-tooltip-show";
         }, this.delay);
 
         return this.tooltip;
+    }
+
+    removeElem(){
+        this.tooltip.classList.remove("ng-tooltip-show");
+        setTimeout(() => {
+           this.tooltip.remove();
+        }, 300); 
     }
 
     setPosition(){
