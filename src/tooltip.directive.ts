@@ -53,6 +53,8 @@ export class TooltipDirective{
     }
 
     removeElem(){
+        this.showDelay = this.delay || this.showDelay; 
+
         this.tooltip.classList.remove("ng-tooltip-show");
         setTimeout(() => {
            this.tooltip.remove();
