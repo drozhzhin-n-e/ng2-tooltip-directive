@@ -33,7 +33,8 @@ Example CSS: https://github.com/drozhzhin-n-e/ng2-tooltip-directive/blob/master/
 | name             | type                                | description                                 |
 |------------------|-------------------------------------|---------------------------------------------|
 | placement        | "top", "bottom", "left", "right"    | The position of the tooltip.                |
-| delay            | number                              | The delay in ms before showing the tooltip. |
+| show-delay       | number                              | The delay in ms before showing the tooltip. |
+| hide-delay       | number                              | The delay in ms before removing the tooltip.|
 | z-index          | number                              | Z-index of the tooltip.                     |
 
 ## Development server
