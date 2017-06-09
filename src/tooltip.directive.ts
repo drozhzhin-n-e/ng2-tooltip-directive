@@ -14,7 +14,9 @@ export class TooltipDirective{
 
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
-    @Input() delay = 0; 
+    @Input() delay = 0;
+    @Input('show-delay') showDelay = 0; 
+    @Input('hide-delay') hideDelay = 300;
     @Input('z-index') zIndex = false;
 
     @HostListener("focusin")
@@ -44,16 +46,18 @@ export class TooltipDirective{
         
         setTimeout(() => {  
             this.tooltip.className += " ng-tooltip-show";
-        }, this.delay);
+        }, this.showDelay);
 
         return this.tooltip;
     }
 
     removeElem(){
+        this.showDelay = this.delay || this.showDelay; 
+
         this.tooltip.classList.remove("ng-tooltip-show");
         setTimeout(() => {
            this.tooltip.remove();
-        }, 300); 
+        }, this.hideDelay); 
     }
 
     setPosition(){
