@@ -11,6 +11,8 @@ export class TooltipDirective{
     tooltip: any;
     elemPosition: any;
     tooltipOffset: number = 8;
+    hideTimeoutId: number;
+    showTimeoutId: number;
 
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
@@ -23,40 +25,59 @@ export class TooltipDirective{
     @HostListener("mouseenter")
     onMouseEnter() {
         this.getElemPosition();
-        document.body.appendChild(this.createElem());
-        this.setPosition();
+
+        if (!this.tooltip){
+            this.create();
+            this.setPosition();
+            this.show();     
+        }
     }
  
     @HostListener("focusout")
     @HostListener("mouseleave")
     onMouseLeave() {
-        this.removeElem();
+        this.hide();
     }
 
     getElemPosition(){
         this.elemPosition = this.elementRef.nativeElement.getBoundingClientRect();
     }
 
-    createElem(){
+    create(){
         this.showDelay = this.delay || this.showDelay; 
-        if (this.tooltip) this.tooltip.remove();
         this.tooltip = document.createElement('span');
         this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
         this.tooltip.textContent = this.tooltipText;
         if (this.zIndex) this.tooltip.style.zIndex = this.zIndex;
         
-        setTimeout(() => {  
-            this.tooltip.className += " ng-tooltip-show";
-        }, this.showDelay);
-
-        return this.tooltip;
+        document.body.appendChild(this.tooltip);
     }
 
-    removeElem(){
-        this.tooltip.classList.remove("ng-tooltip-show");
-        setTimeout(() => {
-           this.tooltip.remove();
-        }, this.hideDelay); 
+    show(){
+        if (this.showTimeoutId) {
+            clearTimeout(this.showTimeoutId);
+        }
+
+        this.showDelay = this.delay || this.showDelay; 
+        this.showTimeoutId = setTimeout(() => {
+            if (this.tooltip){
+                this.tooltip.className += " ng-tooltip-show";
+            }
+        }, this.showDelay);
+    }
+
+    hide(){
+        if (this.hideTimeoutId) {
+            clearTimeout(this.hideTimeoutId);
+        }
+
+        if (this.tooltip){
+            this.tooltip.classList.remove("ng-tooltip-show");
+            this.hideTimeoutId = setTimeout(() => {
+               this.tooltip.parentNode.removeChild(this.tooltip);
+               this.tooltip = null;
+            }, this.hideDelay);
+        }
     }
 
     setPosition(){
@@ -64,13 +85,14 @@ export class TooltipDirective{
         let elemWidth = this.elementRef.nativeElement.offsetWidth;
         let tooltipHeight = this.tooltip.clientHeight;
         let tooltipWidth = this.tooltip.offsetWidth;
+        let scrollY = window.pageYOffset;
 
         if (this.placement == 'top'){
-            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) - (tooltipHeight + this.tooltipOffset)+'px';
+            this.tooltip.style.top = (this.elemPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset)+'px';
         }
 
         if (this.placement == 'bottom'){
-            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) + elemHeight + this.tooltipOffset +'px';
+            this.tooltip.style.top = (this.elemPosition.top + scrollY) + elemHeight + this.tooltipOffset +'px';
         }
 
         if (this.placement == 'top' || this.placement == 'bottom'){
@@ -86,7 +108,7 @@ export class TooltipDirective{
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
-            this.tooltip.style.top = (this.elemPosition.top + window.scrollY) + elemHeight/2 - this.tooltip.clientHeight/2+'px';
+            this.tooltip.style.top = (this.elemPosition.top + scrollY) + elemHeight/2 - this.tooltip.clientHeight/2+'px';
         }
     }
 }
