@@ -60,7 +60,7 @@ export class TooltipDirective{
         }
 
         this.showDelay = this.delay || this.showDelay; 
-        this.showTimeoutId = setTimeout(() => {
+        this.showTimeoutId = window.setTimeout(() => {
             if (this.tooltip){
                 this.tooltip.className += " ng-tooltip-show";
             }
@@ -74,7 +74,7 @@ export class TooltipDirective{
 
         if (this.tooltip){
             this.tooltip.classList.remove("ng-tooltip-show");
-            this.hideTimeoutId = setTimeout(() => {
+            this.hideTimeoutId = window.setTimeout(() => {
                this.tooltip.parentNode.removeChild(this.tooltip);
                this.tooltip = null;
             }, this.hideDelay);
@@ -113,4 +113,3 @@ export class TooltipDirective{
         }
     }
 }
-
