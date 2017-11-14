@@ -35,6 +35,7 @@ export class TooltipDirective{
  
     @HostListener("focusout")
     @HostListener("mouseleave")
+    @HostListener ("mousedown")
     onMouseLeave() {
         this.hide();
     }
