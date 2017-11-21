@@ -23,6 +23,7 @@ export class TooltipDirective{
 
     @HostListener("focusin")
     @HostListener("mouseenter")
+    @HostListener("mousemove")
     onMouseEnter() {
         this.getElemPosition();
 
@@ -35,6 +36,7 @@ export class TooltipDirective{
  
     @HostListener("focusout")
     @HostListener("mouseleave")
+    @HostListener ("mousedown")
     onMouseLeave() {
         this.hide();
     }
@@ -59,7 +61,7 @@ export class TooltipDirective{
         }
 
         this.showDelay = this.delay || this.showDelay; 
-        this.showTimeoutId = setTimeout(() => {
+        this.showTimeoutId = window.setTimeout(() => {
             if (this.tooltip){
                 this.tooltip.className += " ng-tooltip-show";
             }
@@ -67,13 +69,15 @@ export class TooltipDirective{
     }
 
     hide(){
+        clearTimeout(this.showTimeoutId);
+
         if (this.hideTimeoutId) {
             clearTimeout(this.hideTimeoutId);
         }
 
         if (this.tooltip){
             this.tooltip.classList.remove("ng-tooltip-show");
-            this.hideTimeoutId = setTimeout(() => {
+            this.hideTimeoutId = window.setTimeout(() => {
                this.tooltip.parentNode.removeChild(this.tooltip);
                this.tooltip = null;
             }, this.hideDelay);
