@@ -8,21 +8,15 @@ Angular2 tooltip directive.
         
 2 Import `Ng2Module`:
 
-    import { NgModule }         from '@angular/core';
-    import { BrowserModule }    from '@angular/platform-browser';
-    import { AppComponent }     from './app.component';
     import { TooltipDirective } from 'ng2-tooltip-directive/components';
      
     @NgModule({
-        imports:      [ BrowserModule ],
-        declarations: [ AppComponent, TooltipDirective ],
-        bootstrap:    [ AppComponent ]
-    })
-    export class AppModule { } 
+        declarations: [ TooltipDirective ]
+    }) 
 
 3 Add CSS styles
 
-Example CSS: https://github.com/drozhzhin-n-e/ng2-tooltip-directive/blob/master/example/src/styles.css
+Example CSS: http://crystalui.org/components/tooltip#css-styles
 
 ## Usage
     
