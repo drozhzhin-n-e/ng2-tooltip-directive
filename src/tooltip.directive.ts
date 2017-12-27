@@ -31,15 +31,24 @@ export class TooltipDirective {
 
   @HostListener('focusin')
   @HostListener('mouseenter')
-  @HostListener('mousemove')
+  // @HostListener('mousemove') -- not necessary in my opinion, maybe just a workaround to address the hideTimeout-bug
   onMouseEnter() {
+    if (this.hideTimeoutId) {
+      // Clear the hide timeout => there may be an ongoing hide in progress, if you quickly leave and re-enter the tooltipped area
+      clearTimeout(this.hideTimeoutId);
+    }
+
     this.getElemPosition();
 
-    if (!this.tooltip) {
+    if (this.tooltip) {
+      // ensurethe *-show class is present
+      this.tooltip.classList.add('ng-tooltip-show');
+    } else {
       this.create();
       this.setPosition();
       this.show();
     }
+
   }
 
   @HostListener('focusout')
@@ -87,6 +96,7 @@ export class TooltipDirective {
 
     if (this.tooltip) {
       this.tooltip.classList.remove('ng-tooltip-show');
+
       this.hideTimeoutId = window.setTimeout(() => {
         this.tooltip.parentNode.removeChild(this.tooltip);
         this.tooltip = null;
