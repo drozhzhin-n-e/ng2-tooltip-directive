@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 
 export class TooltipDirective{
-
+     
     constructor(private elementRef: ElementRef){}
 
     tooltip: any;
@@ -17,26 +17,23 @@ export class TooltipDirective{
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
     @Input() delay = 0;
-    @Input('show-delay') showDelay = 0;
+    @Input('show-delay') showDelay = 0; 
     @Input('hide-delay') hideDelay = 300;
     @Input('z-index') zIndex = false;
 
     @HostListener("focusin")
     @HostListener("mouseenter")
-    // @HostListener("mousemove") -- not necessary in my opinion, maybe just a workaround to address the hideTimeout-bug
+    @HostListener("mousemove")
     onMouseEnter() {
         this.getElemPosition();
-        if (this.hideTimeoutId) {
-            // Clear the hide timeout => there may be an ongoing hide in progress, if you quickly leave and re-enter the tooltipped area
-            clearTimeout(this.hideTimeoutId);
-        }
+
         if (!this.tooltip){
             this.create();
             this.setPosition();
-            this.show();
+            this.show();     
         }
     }
-
+ 
     @HostListener("focusout")
     @HostListener("mouseleave")
     @HostListener ("mousedown")
@@ -49,12 +46,12 @@ export class TooltipDirective{
     }
 
     create(){
-        this.showDelay = this.delay || this.showDelay;
+        this.showDelay = this.delay || this.showDelay; 
         this.tooltip = document.createElement('span');
         this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
         this.tooltip.textContent = this.tooltipText;
         if (this.zIndex) this.tooltip.style.zIndex = this.zIndex;
-
+        
         document.body.appendChild(this.tooltip);
     }
 
@@ -63,7 +60,7 @@ export class TooltipDirective{
             clearTimeout(this.showTimeoutId);
         }
 
-        this.showDelay = this.delay || this.showDelay;
+        this.showDelay = this.delay || this.showDelay; 
         this.showTimeoutId = window.setTimeout(() => {
             if (this.tooltip){
                 this.tooltip.className += " ng-tooltip-show";
@@ -79,11 +76,8 @@ export class TooltipDirective{
         }
 
         if (this.tooltip){
+            this.tooltip.classList.remove("ng-tooltip-show");
             this.hideTimeoutId = window.setTimeout(() => {
-               // moved removal of the class inside the timeout
-               // => elsewhise the tooltip would be hidden immediately and just removed from the dom after the timeout,
-               // => doing this inside the timeout is also required to cancel the hide-timeout on re-enter
-               this.tooltip.classList.remove("ng-tooltip-show");
                this.tooltip.parentNode.removeChild(this.tooltip);
                this.tooltip = null;
             }, this.hideDelay);
@@ -110,11 +104,11 @@ export class TooltipDirective{
         }
 
         if (this.placement == 'left'){
-            this.tooltip.style.left = this.elemPosition.left - tooltipWidth - this.tooltipOffset +'px';
+            this.tooltip.style.left = this.elemPosition.left - tooltipWidth - this.tooltipOffset +'px'; 
         }
 
         if (this.placement == 'right'){
-            this.tooltip.style.left = this.elemPosition.left + elemWidth + this.tooltipOffset +'px';
+            this.tooltip.style.left = this.elemPosition.left + elemWidth + this.tooltipOffset +'px'; 
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
