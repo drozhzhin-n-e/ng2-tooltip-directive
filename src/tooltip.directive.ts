@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 
 export class TooltipDirective{
-     
+
     constructor(private elementRef: ElementRef){}
 
     tooltip: any;
@@ -17,28 +17,48 @@ export class TooltipDirective{
     @Input('tooltip') tooltipText = "";
     @Input() placement = "top";
     @Input() delay = 0;
-    @Input('show-delay') showDelay = 0; 
+    @Input('show-delay') showDelay = 0;
     @Input('hide-delay') hideDelay = 300;
     @Input('z-index') zIndex = false;
+    @Input() hover:boolean = true;
 
     @HostListener("focusin")
     @HostListener("mouseenter")
     @HostListener("mousemove")
     onMouseEnter() {
-        this.getElemPosition();
+        if(this.hover){
 
-        if (!this.tooltip){
-            this.create();
-            this.setPosition();
-            this.show();     
+          this.getElemPosition();
+
+          if (!this.tooltip){
+              this.create();
+              this.setPosition();
+              this.show();
+          }
         }
     }
- 
+
     @HostListener("focusout")
     @HostListener("mouseleave")
     @HostListener ("mousedown")
     onMouseLeave() {
-        this.hide();
+        if(this.hover)
+            this.hide();
+    }
+
+    @HostListener('click', ['$event'])
+    onClick(e){
+        this.getElemPosition();
+
+        if (!this.tooltip){
+          this.create();
+          this.setPosition();
+          this.show();
+        }
+
+        setTimeout(() => {
+          this.hide();
+        }, this.hideDelay)
     }
 
     getElemPosition(){
@@ -46,12 +66,12 @@ export class TooltipDirective{
     }
 
     create(){
-        this.showDelay = this.delay || this.showDelay; 
+        this.showDelay = this.delay || this.showDelay;
         this.tooltip = document.createElement('span');
         this.tooltip.className += "ng-tooltip ng-tooltip-"+this.placement;
         this.tooltip.textContent = this.tooltipText;
         if (this.zIndex) this.tooltip.style.zIndex = this.zIndex;
-        
+
         document.body.appendChild(this.tooltip);
     }
 
@@ -60,7 +80,7 @@ export class TooltipDirective{
             clearTimeout(this.showTimeoutId);
         }
 
-        this.showDelay = this.delay || this.showDelay; 
+        this.showDelay = this.delay || this.showDelay;
         this.showTimeoutId = window.setTimeout(() => {
             if (this.tooltip){
                 this.tooltip.className += " ng-tooltip-show";
@@ -104,11 +124,11 @@ export class TooltipDirective{
         }
 
         if (this.placement == 'left'){
-            this.tooltip.style.left = this.elemPosition.left - tooltipWidth - this.tooltipOffset +'px'; 
+            this.tooltip.style.left = this.elemPosition.left - tooltipWidth - this.tooltipOffset +'px';
         }
 
         if (this.placement == 'right'){
-            this.tooltip.style.left = this.elemPosition.left + elemWidth + this.tooltipOffset +'px'; 
+            this.tooltip.style.left = this.elemPosition.left + elemWidth + this.tooltipOffset +'px';
         }
 
         if (this.placement == 'left' || this.placement == 'right'){
