@@ -30,6 +30,7 @@ Example CSS: http://crystalui.org/components/tooltip#css-styles
 | show-delay       | number                              | The delay in ms before showing the tooltip. |
 | hide-delay       | number                              | The delay in ms before removing the tooltip.|
 | z-index          | number                              | Z-index of the tooltip.                     |
+| hover            | boolean                             | Set to none to trigger the tooltip with a click. Control the closing time with `hide-delay`. `true` by default|
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
