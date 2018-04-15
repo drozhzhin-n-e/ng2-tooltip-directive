@@ -62,6 +62,7 @@ export class TooltipDirective {
   onClick(){
     if (this.hideTimeoutId) {
       clearTimeout(this.hideAfterClickTimeoutId);
+      clearTimeout(this.hideTimeoutId);
     }
 
     this.getElemPosition();
