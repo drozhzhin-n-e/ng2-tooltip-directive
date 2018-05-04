@@ -1,22 +1,19 @@
-Angular2 tooltip directive.
+Angular tooltip directive.
 
 ## Installation
 
-1 Install the npm package.
+Install the npm package.
 
     npm i ng2-tooltip-directive
         
-2 Import `Ng2Module`:
+Import `Ng2Module`:
 
-    import { TooltipDirective } from 'ng2-tooltip-directive/components';
+    import { TooltipModule } from 'ng2-tooltip-directive';
      
     @NgModule({
-        declarations: [ TooltipDirective ]
+        imports: [ TooltipModule ]
     }) 
 
-3 Add CSS styles
-
-Example CSS: http://crystalui.org/components/tooltip#css-styles
 
 ## Usage
     
@@ -24,16 +21,13 @@ Example CSS: http://crystalui.org/components/tooltip#css-styles
 
 ## Properties
 
-| name             | type                                | description                                 |
-|------------------|-------------------------------------|---------------------------------------------|
-| placement        | "top", "bottom", "left", "right"    | The position of the tooltip.                |
-| show-delay       | number                              | The delay in ms before showing the tooltip. |
-| hide-delay       | number                              | The delay in ms before removing the tooltip.|
-| z-index          | number                              | Z-index of the tooltip.                     |
-| hover            | boolean                             | Set to none to trigger the tooltip with a click. Control the closing time with `hide-delay`. `true` by default|
-
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+| name             | type                                | default | description                                 |
+|------------------|-------------------------------------|---------|---------------------------------------------|
+| placement        | "top", "bottom", "left", "right"    | "top"   | The position of the tooltip.                |
+| show-delay       | number                              | 0       | The delay in ms before showing the tooltip. |
+| hide-delay       | number                              | 300     | The delay in ms before removing the tooltip.|
+| z-index          | number                              | 0       | Z-index of the tooltip.                     |
+| trigger          | "hover", "click"                    | "hover" | Specifies how the tooltip is triggered. Control the closing time with "hide-delay". |
 
 ## Demo
 http://crystalui.org/components/tooltip

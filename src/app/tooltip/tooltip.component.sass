@@ -1,0 +1,51 @@
+\:host
+    max-width: 200px
+    background-color: black
+    color: #fff
+    text-align: center
+    border-radius: 6px
+    padding: 5px 8px
+    position: absolute
+    z-index: 1000
+    display: block
+    opacity: 0
+    -webkit-transition: opacity 300ms
+    -moz-transition: opacity 300ms
+    -o-transition: opacity 300ms
+    transition: opacity 300ms
+
+\:host.tooltip-show
+    opacity: 1
+
+\:host.tooltip::after
+    content: ""
+    position: absolute
+    border-style: solid
+
+\:host.tooltip-top::after 
+    top: 100%
+    left: 50%
+    margin-left: -5px
+    border-width: 5px
+    border-color: black transparent transparent transparent
+
+\:host.tooltip-bottom::after
+    bottom: 100%
+    left: 50%
+    margin-left: -5px
+    border-width: 5px
+    border-color: transparent transparent black transparent
+
+\:host.tooltip-left::after
+    top: 50%
+    left: 100%
+    margin-top: -5px
+    border-width: 5px
+    border-color: transparent transparent transparent black
+
+\:host.tooltip-right::after 
+    top: 50%
+    right: 100%
+    margin-top: -5px
+    border-width: 5px
+    border-color: transparent black transparent transparent
