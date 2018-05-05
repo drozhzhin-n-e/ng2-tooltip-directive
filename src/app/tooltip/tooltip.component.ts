@@ -9,6 +9,7 @@ import {Component, ElementRef, HostListener, HostBinding, Input, OnInit} from '@
 
 export class TooltipComponent {
 
+  animationDurationDefault: number = 300;
   tooltipOffset: number = 8;
   _show:boolean = false;
 
@@ -21,6 +22,7 @@ export class TooltipComponent {
   @HostBinding('style.top') hostStyleTop: string;
   @HostBinding('style.left') hostStyleLeft: string;
   @HostBinding('style.z-index') hostStyleZIndex: number;
+  @HostBinding('style.transition') hostStyleTransition: string;
   @HostBinding('class.tooltip-show') hostClassShow: boolean;
 
   @Input() set show (value:boolean) {
@@ -57,6 +59,10 @@ export class TooltipComponent {
     return this.data.tooltipClass;
   }
 
+  get animationDuration(){
+    return Number(this.data.animationDuration);
+  }
+
   constructor(private elementRef: ElementRef) {
   }
 
@@ -64,6 +70,7 @@ export class TooltipComponent {
     this.setPlacementClass();
     this.setZIndex();
     this.setCustomClass();
+    this.setAnimationDuration();
   }
 
   setPosition():void {
@@ -112,6 +119,12 @@ export class TooltipComponent {
   setCustomClass(){
     if (this.tooltipClass){
       this.elementRef.nativeElement.classList.add(this.tooltipClass);
+    }
+  }
+
+  setAnimationDuration(){
+    if (this.animationDuration != this.animationDurationDefault){
+      this.hostStyleTransition = 'opacity '+this.animationDuration+'ms';
     }
   }
 }

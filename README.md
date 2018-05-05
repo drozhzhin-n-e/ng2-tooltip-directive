@@ -29,6 +29,7 @@ Import `Ng2Module`:
 | z-index          | number                              | 0       | Z-index of the tooltip.                     |
 | trigger          | "hover", "click"                    | "hover" | Specifies how the tooltip is triggered. Control the closing time with "hide-delay". |
 | tooltip-class    | string                              |         | Classes to be passed to the tooltip.        |
+| animation-duration | number                            | 300     | The duration controls how long the animation takes to run from start to finish. |
 
 ## Demo
 http://crystalui.org/components/tooltip

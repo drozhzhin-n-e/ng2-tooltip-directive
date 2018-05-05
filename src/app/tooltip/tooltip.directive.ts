@@ -180,7 +180,8 @@ export class TooltipDirective {
       element: this.elementRef.nativeElement,
       elementPosition: this.elementPosition,
       zIndex: this.zIndex,
-      tooltipClass: this.tooltipClass
+      tooltipClass: this.tooltipClass,
+      animationDuration: this.animationDuration
     }
     this.appRef.attachView(this.componentRef.hostView);
     const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
