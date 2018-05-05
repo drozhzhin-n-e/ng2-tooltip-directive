@@ -53,12 +53,17 @@ export class TooltipComponent {
     return this.data.value;
   }
 
+  get tooltipClass(){
+    return this.data.tooltipClass;
+  }
+
   constructor(private elementRef: ElementRef) {
   }
 
   ngOnInit() {
     this.setPlacementClass();
     this.setZIndex();
+    this.setCustomClass();
   }
 
   setPosition():void {
@@ -101,6 +106,12 @@ export class TooltipComponent {
   setZIndex():void {
     if (this.zIndex){
       this.hostStyleZIndex = this.zIndex;
+    }
+  }
+
+  setCustomClass(){
+    if (this.tooltipClass){
+      this.elementRef.nativeElement.classList.add(this.tooltipClass);
     }
   }
 }

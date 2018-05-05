@@ -25,13 +25,14 @@ export class TooltipDirective {
   _hideDelay: number = 300;
 
   /* tslint:disable:no-input-rename */
-  @Input('tooltip') tooltipValue: string = '';
+  @Input('tooltip') tooltipValue: string;
   @Input() placement: string = 'top';
   @Input() delay: number = 0;
   @Input('hide-delay-mobile') hideDelayMobile: number = 1500;
   @Input('z-index') zIndex: number = 0;
   @Input('animation-duration') animationDuration: number = 300;
   @Input() trigger: string = 'hover';
+  @Input('tooltip-class') tooltipClass: string;
 
   /* tslint:enable */
 
@@ -178,7 +179,8 @@ export class TooltipDirective {
       placement: this.placement,
       element: this.elementRef.nativeElement,
       elementPosition: this.elementPosition,
-      zIndex: this.zIndex
+      zIndex: this.zIndex,
+      tooltipClass: this.tooltipClass
     }
     this.appRef.attachView(this.componentRef.hostView);
     const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;

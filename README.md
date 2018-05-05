@@ -28,6 +28,7 @@ Import `Ng2Module`:
 | hide-delay       | number                              | 300     | The delay in ms before removing the tooltip.|
 | z-index          | number                              | 0       | Z-index of the tooltip.                     |
 | trigger          | "hover", "click"                    | "hover" | Specifies how the tooltip is triggered. Control the closing time with "hide-delay". |
+| tooltip-class    | string                              |         | Classes to be passed to the tooltip.        |
 
 ## Demo
 http://crystalui.org/components/tooltip
