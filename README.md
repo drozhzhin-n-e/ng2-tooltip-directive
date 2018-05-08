@@ -1,4 +1,6 @@
-Angular tooltip directive.
+# Tooltip for Angular
+
+[![Build Status](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive.svg?branch=master)](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive)
 
 ## Installation
 
