@@ -39,4 +39,5 @@ http://crystalui.org/components/tooltip
 ## Sponsors
 
 We use Browserstack 
+
 [![Browserstack](http://crystalui.org/assets/img/browserstack-logo.png)](http://browserstack.com/)
