@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter} from '@angular/core';
+import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'tooltip',
@@ -72,7 +72,7 @@ export class TooltipComponent {
     return this.options['theme'] === 'light';
   }
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -117,7 +117,7 @@ export class TooltipComponent {
   }
 
   setPlacementClass():void {
-    this.elementRef.nativeElement.classList.add('tooltip-'+this.placement);
+    this.renderer.addClass(this.elementRef.nativeElement,'tooltip-'+this.placement);
   }
 
   setZIndex():void {
@@ -128,7 +128,7 @@ export class TooltipComponent {
 
   setCustomClass(){
     if (this.options['tooltip-class']){
-      this.elementRef.nativeElement.classList.add(this.options['tooltip-class']);
+      this.renderer.addClass(this.elementRef.nativeElement,this.options['tooltip-class']);
     }
   }
 
