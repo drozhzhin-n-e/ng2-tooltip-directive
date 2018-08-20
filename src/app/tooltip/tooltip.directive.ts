@@ -126,6 +126,12 @@ export class TooltipDirective {
     }
   }
 
+  @Input('max-width') set maxWidth(value: number) {
+    if (value){
+      this._options['max-width'] = value;
+    }
+  }
+
   @Input('id') set id(value: any) {
     this._id = value;
   }

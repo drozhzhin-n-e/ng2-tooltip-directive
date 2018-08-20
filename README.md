@@ -38,8 +38,8 @@ You may pass as an object:
 |------------------|-------------------------------------|---------|---------------------------------------------|
 | placement        | "top", "bottom", "left", "right"    | "top"   | The position of the tooltip.                |
 | show-delay       | number                              | 0       | The delay in ms before showing the tooltip. |
-| hide-delay       | number                              | 300     | The delay in ms before removing the tooltip.|
-| hide-delay-mobile      | number                        | 1500    | Delay in milliseconds before hiding the tooltip (for mobile devices)|
+| hide-delay       | number                              | 300     | The delay in ms before removing the tooltip. |
+| hide-delay-mobile      | number                        | 1500    | Delay in milliseconds before hiding the tooltip (for mobile devices). |
 | display          | boolean                             | true    | Tooltip availability for display.           |
 | display-mobile   | boolean                             | true    | Display the tooltip on mobile devices.      |
 | z-index          | number                              | 0       | Z-index of the tooltip.                     |
@@ -49,6 +49,7 @@ You may pass as an object:
 | theme            | "dark", "light"                     | "dark"  | Theme of tooltip background and text.       |
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
+| max-width        | string                              | "200px" | Maximum width of the tooltip.               |
 
 ## Events
 

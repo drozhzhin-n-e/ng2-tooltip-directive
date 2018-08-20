@@ -23,6 +23,7 @@ export class TooltipComponent {
   @HostBinding('style.left') hostStyleLeft: string;
   @HostBinding('style.z-index') hostStyleZIndex: number;
   @HostBinding('style.transition') hostStyleTransition: string;
+  @HostBinding('style.max-width') hostStyleMaxWidth: string;
   @HostBinding('class.tooltip-show') hostClassShow: boolean;
   @HostBinding('class.tooltip-shadow') hostClassShadow: boolean;
   @HostBinding('class.tooltip-light') hostClassLight: boolean;
@@ -141,5 +142,6 @@ export class TooltipComponent {
   setStyles(){
     this.hostClassShadow = this.options['shadow'];
     this.hostClassLight = this.isThemeLight;
+    this.hostStyleMaxWidth = this.options['max-width'];
   }
 }

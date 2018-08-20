@@ -14,5 +14,6 @@ export const defaultOptions = {
 	'shadow': true,
 	'theme': 'dark',
 	'offset': 8,
+	'max-width': '',
 	'id': false
 }
