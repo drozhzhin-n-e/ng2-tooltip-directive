@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter} from '@angular/core';
+import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'tooltip',
@@ -48,7 +48,7 @@ export class TooltipComponent {
     return this.data.options.placement;
   }
 
-  get elemetn(){
+  get element(){
     return this.data.element;
   }
 
@@ -72,7 +72,7 @@ export class TooltipComponent {
     return this.options['theme'] === 'light';
   }
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -84,8 +84,8 @@ export class TooltipComponent {
   }
 
   setPosition():void {
-    const elemetnHeight = this.elemetn.offsetHeight;
-    const elemetnWidth = this.elemetn.offsetWidth;
+    const elementHeight = this.element.offsetHeight;
+    const elementWidth = this.element.offsetWidth;
     const tooltipHeight = this.elementRef.nativeElement.clientHeight;
     const tooltipWidth = this.elementRef.nativeElement.offsetWidth;
     const scrollY = window.pageYOffset;
@@ -96,11 +96,11 @@ export class TooltipComponent {
     }
 
     if (this.placement === 'bottom') {
-      this.hostStyleTop = (this.elementPosition.top + scrollY) + elemetnHeight + this.tooltipOffset + 'px';
+      this.hostStyleTop = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset + 'px';
     }
 
     if (this.placement === 'top' || this.placement === 'bottom') {
-      this.hostStyleLeft = (this.elementPosition.left + elemetnWidth / 2) - tooltipWidth / 2 + 'px';
+      this.hostStyleLeft = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2 + 'px';
     }
 
     if (this.placement === 'left') {
@@ -108,27 +108,27 @@ export class TooltipComponent {
     }
 
     if (this.placement === 'right') {
-      this.hostStyleLeft = this.elementPosition.left + elemetnWidth + this.tooltipOffset + 'px';
+      this.hostStyleLeft = this.elementPosition.left + elementWidth + this.tooltipOffset + 'px';
     }
 
     if (this.placement === 'left' || this.placement === 'right') {
-      this.hostStyleTop = (this.elementPosition.top + scrollY) + elemetnHeight / 2 - tooltip.clientHeight / 2 + 'px';
+      this.hostStyleTop = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2 + 'px';
     }
   }
 
   setPlacementClass():void {
-    this.elementRef.nativeElement.classList.add('tooltip-'+this.placement);
+    this.renderer.addClass(this.elementRef.nativeElement,'tooltip-'+this.placement);
   }
 
   setZIndex():void {
     if (this.options['z-index'] !== 0){
       this.hostStyleZIndex = this.options['z-index'];
     }
-  }
+  } 
 
   setCustomClass(){
     if (this.options['tooltip-class']){
-      this.elementRef.nativeElement.classList.add(this.options['tooltip-class']);
+      this.renderer.addClass(this.elementRef.nativeElement,this.options['tooltip-class']);
     }
   }
 

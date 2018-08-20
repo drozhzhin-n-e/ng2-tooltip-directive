@@ -40,6 +40,7 @@ export class TooltipDirective {
   _id: any;
   _options: any = {};
   _defaultOptions: any;
+  _destroyDelay: number;
   componentSubscribe: any;
 
   /* tslint:disable:no-input-rename */
@@ -167,7 +168,14 @@ export class TooltipDirective {
   }
 
   get destroyDelay() {
-    return Number(this.hideDelay) + Number(this.options['animation-duration']);
+    if (this._destroyDelay){
+      return this._destroyDelay;
+    } else {
+      return Number(this.hideDelay) + Number(this.options['animation-duration']);
+    }
+  }
+  set destroyDelay(value:number) {
+    this._destroyDelay = value;
   }
 
   @Output() events: EventEmitter<any> = new EventEmitter<any>();
@@ -217,6 +225,8 @@ export class TooltipDirective {
     if (this.componentSubscribe){
       this.componentSubscribe.unsubscribe();
     }
+
+    this.destroyTooltip({fast: true});
   }
 
   getElementPosition():void {
@@ -236,14 +246,14 @@ export class TooltipDirective {
     }, this.showDelay);
   }
 
-  destroyTooltip():void {
+  destroyTooltip(options = {fast: false}):void {
     this.clearTimeouts();
 
     if (this.isTooltipDestroyed == false) {
 
       this.hideTimeoutId = window.setTimeout(() => {
         this.hideTooltip();
-      }, this.hideDelay);
+      }, options.fast ? 0 : this.hideDelay);
 
       this.destroyTimeoutId = window.setTimeout(() => {
         if (!this.componentRef || this.isTooltipDestroyed){
@@ -253,7 +263,7 @@ export class TooltipDirective {
         this.appRef.detachView(this.componentRef.hostView);
         this.componentRef.destroy();
         this.events.emit('hidden');
-      }, this.destroyDelay);
+      }, options.fast ? 0 : this.destroyDelay);
     }
   }
 
