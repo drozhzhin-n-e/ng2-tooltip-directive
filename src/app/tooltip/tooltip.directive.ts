@@ -99,7 +99,7 @@ export class TooltipDirective {
   }
 
   @Input('display') set display(value: boolean) {
-    if (value){
+    if (typeof(value) == typeof(true))){
       this._options['display'] = value;
     }
   }
