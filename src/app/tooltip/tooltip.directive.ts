@@ -93,13 +93,13 @@ export class TooltipDirective {
   }
 
   @Input('tooltip-class') set tooltipClass(value: string) {
-    if (value){
+    if (value) {
       this._options['tooltip-class'] = value;
     }
   }
 
   @Input('display') set display(value: boolean) {
-    if (typeof(value) == typeof(true))){
+    if (typeof(value) === 'boolean') {
       this._options['display'] = value;
     }
   }
