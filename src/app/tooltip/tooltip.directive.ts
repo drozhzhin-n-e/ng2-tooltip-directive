@@ -87,7 +87,7 @@ export class TooltipDirective {
   }
 
   @Input('trigger') set trigger(value: string) {
-    if (value){
+    if (value) {
       this._options['trigger'] = value;
     }
   }
