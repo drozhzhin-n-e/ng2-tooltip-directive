@@ -228,11 +228,11 @@ export class TooltipDirective {
   }
 
   ngOnDestroy():void {
+    this.destroyTooltip({fast: true});
+    
     if (this.componentSubscribe){
       this.componentSubscribe.unsubscribe();
     }
-
-    this.destroyTooltip({fast: true});
   }
 
   getElementPosition():void {
