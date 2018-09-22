@@ -87,19 +87,19 @@ export class TooltipDirective {
   }
 
   @Input('trigger') set trigger(value: string) {
-    if (value){
+    if (value) {
       this._options['trigger'] = value;
     }
   }
 
   @Input('tooltip-class') set tooltipClass(value: string) {
-    if (value){
+    if (value) {
       this._options['tooltip-class'] = value;
     }
   }
 
   @Input('display') set display(value: boolean) {
-    if (value){
+    if (typeof(value) === 'boolean') {
       this._options['display'] = value;
     }
   }
