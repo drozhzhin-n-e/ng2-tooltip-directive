@@ -1,6 +1,7 @@
 {
-  "name": "tooltip-app-ng6",
+  "name": "ng2-tooltip-directive",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
