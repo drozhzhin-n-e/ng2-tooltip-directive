@@ -105,9 +105,7 @@ export class TooltipDirective {
   }
 
   @Input('display-mobile') set displayMobile(value: boolean) {
-    if (value){
-      this._options['display-mobile'] = value;
-    }
+    this._options['display-mobile'] = value;
   }
 
   @Input('shadow') set shadow(value: boolean) {
@@ -212,6 +210,8 @@ export class TooltipDirective {
 
   @HostListener('click', ['$event'])
   onClick(){
+
+
     if (this.isDisplayOnClick == false){
       return;
     }
@@ -326,26 +326,33 @@ export class TooltipDirective {
   }
 
   get isDisplayOnHover():boolean {
-    if (this.options['trigger'] === 'hover'){
-      return true;
-    } else if(this.isMobile || this.options['display'] === false || this.options['trigger'] !== 'hover') {
-      return false;
-    }
-    return true;
-  }
-
-  get isDisplayOnClick():boolean {
-    if (this.options['trigger'] != 'click' && this.isMobile == false) {
-      return false;
-    } 
-
     if (this.options['display'] == false) {
       return false;
-    } 
+    }
 
     if (this.options['display-mobile'] == false && this.isMobile) {
       return false;
     }
+
+    if (this.options['trigger'] !== 'hover') {
+      return false;
+    }
+
+    return true;
+  }
+
+  get isDisplayOnClick():boolean {
+    if (this.options['display'] == false) {
+      return false;
+    }
+
+    if (this.options['display-mobile'] == false && this.isMobile) {
+      return false;
+    }
+
+    if (this.options['trigger'] != 'click') {
+      return false;
+    } 
 
     return true;
   }
