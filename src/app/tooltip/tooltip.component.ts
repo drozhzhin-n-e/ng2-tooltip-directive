@@ -93,7 +93,6 @@ export class TooltipComponent {
     const tooltipHeight = tooltip.clientHeight;
     const tooltipWidth =  tooltip.clientWidth;
     const scrollY = window.pageYOffset;
-    
 
     if (this.placement === 'top') {
       this.hostStyleTop = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset) + 'px';
