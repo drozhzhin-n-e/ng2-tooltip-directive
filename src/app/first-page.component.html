@@ -1,0 +1,78 @@
+<h3>Basic usage</h3> 
+
+<button 
+	tooltip="Tooltip" 
+	placement="top">Tooltip on top</button>
+
+<button 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	placement="bottom">Tooltip on bottom</button>
+
+<button 
+	tooltip="Tooltip" 
+	placement="left">Tooltip on left</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	placement="right" 
+	show-delay="500">Tooltip on right, show delay 500ms</button>
+
+<button 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	trigger="click" 
+	hide-delay="1500" 
+	placement="top">Click me, hide delay 1s</button>
+
+<h3>Light theme</h3>
+
+<button
+	tooltip="Tooltip"
+	theme="light"
+	placement="top">Tooltip on top</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	theme="light"
+	placement="bottom">Tooltip on bottom</button>
+
+<button
+	tooltip="Tooltip" 
+	theme="light"
+	placement="left">Tooltip on left</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	theme="light"
+	placement="right">Tooltip on right</button>
+
+<h3>Events</h3>
+
+<button
+	tooltip="Tooltip"
+	placement="top"
+	(events)="handleTooltipEvents($event)">Tooltip on top</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	placement="top" 
+	show-delay="500"
+	(events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	placement="top"
+	trigger="click" 
+	hide-delay="1000" 
+	(events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
+
+<h3>Methods</h3>
+
+<button (click)="someTooltip.show()">Show tooltip</button>
+<button (click)="someTooltip.hide()">Hide tooltip</button>
+
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+	id="someTooltip">Tooltip on top</button>
+
+<h3>Navigation</h3>
+<a routerLink="/second-page">Second page</a>

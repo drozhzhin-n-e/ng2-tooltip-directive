@@ -326,18 +326,11 @@ export class TooltipDirective {
   }
 
   get isDisplayOnHover():boolean {
-    if (this.options['trigger'] != 'hover'){
-      return false;
-    } 
-
-    if (this.isMobile) {
-      return false;
-    } 
-
-    if (this.options['display'] == false) {
+    if (this.options['trigger'] === 'hover'){
+      return true;
+    } else if(this.isMobile || this.options['display'] === false || this.options['trigger'] !== 'hover') {
       return false;
     }
-
     return true;
   }
 
