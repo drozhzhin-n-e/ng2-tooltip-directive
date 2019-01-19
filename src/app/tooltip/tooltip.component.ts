@@ -128,10 +128,12 @@ export class TooltipComponent {
       this.hostStyleZIndex = this.options['z-index'];
     }
   } 
-
-  setCustomClass(){
+  
+  setCustomClass() {
     if (this.options['tooltip-class']){
-      this.renderer.addClass(this.elementRef.nativeElement,this.options['tooltip-class']);
+      this.options['tooltip-class'].split(' ').forEach(className => {
+        this.renderer.addClass(this.elementRef.nativeElement, className);
+      });
     }
   }
 
