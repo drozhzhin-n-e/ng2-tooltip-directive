@@ -208,7 +208,7 @@ export class TooltipDirective {
     }
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('click')
   onClick(){
 
 

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TooltipModule } from './tooltip/tooltip.module';
+//import { TooltipModule } from 'ng2-tooltip-directive';
 import { AppRoutingModule } from './app.routing'; 
 import { AppComponent } from './app.component';
 import { FirstPageComponent } from './first-page.component';
