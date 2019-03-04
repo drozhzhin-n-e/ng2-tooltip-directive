@@ -3,7 +3,7 @@ import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEm
 @Component({
   selector: 'tooltip',
   templateUrl: './tooltip.component.html',
-  host: {'class': 'tooltip'}, 
+  host: {'class': 'tooltip'},
   styleUrls: ['./tooltip.component.sass']
 })
 
@@ -87,7 +87,7 @@ export class TooltipComponent {
   setPosition():void {
     const isSvg = this.element instanceof SVGElement;
     const tooltip = this.elementRef.nativeElement;
-    
+
     const elementHeight = isSvg ? this.element.getBBox().height : this.element.offsetHeight;
     const elementWidth = isSvg ? this.element.getBBox().width : this.element.offsetWidth;
     const tooltipHeight = tooltip.clientHeight;
@@ -127,7 +127,7 @@ export class TooltipComponent {
     if (this.options['z-index'] !== 0){
       this.hostStyleZIndex = this.options['z-index'];
     }
-  } 
+  }
 
   setCustomClass(){
     if (this.options['tooltip-class']){

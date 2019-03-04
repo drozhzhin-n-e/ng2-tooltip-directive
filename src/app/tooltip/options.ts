@@ -1,5 +1,6 @@
 export const defaultOptions = {
 	'placement': 'top',
+	'content-type': 'string',
 	'delay': 0,
 	'show-delay': 0,
 	'hide-delay': 300,
@@ -9,7 +10,7 @@ export const defaultOptions = {
 	'animation-duration-default': 300,
 	'trigger': 'hover',
 	'tooltip-class': '',
-	'display': true, 
+	'display': true,
 	'display-mobile': true,
 	'shadow': true,
 	'theme': 'dark',
