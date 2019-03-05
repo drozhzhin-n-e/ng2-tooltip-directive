@@ -32,12 +32,12 @@ You can pass HTML as content :
   ```
 
   ```
-  <ng-template #HTMLContent>
+  <ng-template #HtmlContent>
     <p>Hello i'm a <strong>bold</strong> text !</p>
   </ng-template>
 
   <span 
-    [tooltip]="HTMLContent" 
+    [tooltip]="HtmlContent" 
     content-type="template"
   >
     Tooltip with template content
@@ -71,7 +71,7 @@ You may pass as an object:
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
 | max-width        | string                              | "200px" | Maximum width of the tooltip.               |
-| content-type     | "string", "template"                | "string"| The content type passed to the tooltip      |
+| content-type     | "string", "html', "template"        | "string"| The content type passed to the tooltip      |
 
 ## Events
 
