@@ -42,13 +42,10 @@ You can pass HTML as content :
 
   ```
   <ng-template #HtmlContent>
-    <p>Hello i'm a <strong>bold</strong> text !</p>
+    <p>Hello i'm a <strong>bold</strong> text!</p>
   </ng-template>
 
-  <span 
-    [tooltip]="HtmlContent" 
-    content-type="template"
-  >
+  <span [tooltip]="HtmlContent" content-type="template">
     Tooltip with template content
   </span>
   ```
