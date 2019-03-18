@@ -23,6 +23,15 @@ Options can be set in the directive tag, so they have the highest priority.
 
     <span tooltip="Tooltip" placement="top" show-delay="500">Tooltip on top</span>
 
+You may pass as an object:
+
+	<span tooltip="Tooltip" [options]="myOptions">Tooltip on left</span>
+
+	myOptions = {
+	    'placement': 'left',
+	    'show-delay': 500
+	}
+
 You can pass HTML as content :
 
   ```
@@ -43,15 +52,6 @@ You can pass HTML as content :
     Tooltip with template content
   </span>
   ```
-
-You may pass as an object:
-
-	<span tooltip="Tooltip" [options]="myOptions">Tooltip on left</span>
-
-	myOptions = {
-	    'placement': 'left',
-	    'show-delay': 500
-	}
 
 ## Properties
 
