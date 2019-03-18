@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TooltipModule } from './tooltip/tooltip.module';
-//import { TooltipModule } from 'ng2-tooltip-directive';
-import { AppRoutingModule } from './app.routing'; 
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { TooltipModule } from './tooltip/tooltip.module';
 import { FirstPageComponent } from './first-page.component';
 import { SecondPageComponent } from './second-page.component';
 
@@ -16,9 +16,8 @@ import { SecondPageComponent } from './second-page.component';
   ],
   imports: [
     BrowserModule,
-    TooltipModule,
     AppRoutingModule,
-    RouterModule.forRoot([])
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
