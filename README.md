@@ -23,6 +23,27 @@ Options can be set in the directive tag, so they have the highest priority.
 
     <span tooltip="Tooltip" placement="top" show-delay="500">Tooltip on top</span>
 
+You can pass HTML as content :
+
+  ```
+  <span tooltip="<p>Hello i'm a <strong>bold</strong> text !</p>">
+    Tooltip with HTML content
+  </span>
+  ```
+
+  ```
+  <ng-template #HtmlContent>
+    <p>Hello i'm a <strong>bold</strong> text !</p>
+  </ng-template>
+
+  <span 
+    [tooltip]="HtmlContent" 
+    content-type="template"
+  >
+    Tooltip with template content
+  </span>
+  ```
+
 You may pass as an object:
 
 	<span tooltip="Tooltip" [options]="myOptions">Tooltip on left</span>
@@ -50,6 +71,7 @@ You may pass as an object:
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
 | max-width        | string                              | "200px" | Maximum width of the tooltip.               |
+| content-type     | "string", "html', "template"        | "string"| The content type passed to the tooltip      |
 
 ## Events
 

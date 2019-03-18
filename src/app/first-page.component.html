@@ -1,26 +1,26 @@
-<h3>Basic usage</h3> 
+<h3>Basic usage</h3>
 
-<button 
-	tooltip="Tooltip" 
+<button
+	tooltip="Tooltip"
 	placement="top">Tooltip on top</button>
 
-<button 
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
 	placement="bottom">Tooltip on bottom</button>
 
-<button 
-	tooltip="Tooltip" 
+<button
+	tooltip="Tooltip"
 	placement="left">Tooltip on left</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
-	placement="right" 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+	placement="right"
 	show-delay="500">Tooltip on right, show delay 500ms</button>
 
-<button 
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
-	trigger="click" 
-	hide-delay="1500" 
+<button
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+	trigger="click"
+	hide-delay="1500"
 	placement="top">Click me, hide delay 1s</button>
 
 <h3>SVG</h3>
@@ -31,6 +31,28 @@
   </circle>
 </svg>
 
+<h3>HTML template content</h3>
+<ng-template #HtmlContent>
+  <div>
+    <h3>Hello I'm h3 tag !</h3>
+    <hr />
+    <p>I can write some description in p tag as <em>italic</em></p>
+  </div>
+</ng-template>
+
+<button
+	[tooltip]="HtmlContent"
+  trigger="click"
+  content-type="template"
+	hide-delay="5500"
+  placement="top">Click me, I will show you HTML content
+</button>
+
+<button
+  tooltip="<h3>Lorem ipsum dolor <em>sit amet</em>, his ut dicunt recteque ea.</h3>"
+  content-type="html"
+	placement="top">Simple HTML</button>
+
 <h3>Light theme</h3>
 
 <button
@@ -39,17 +61,17 @@
 	placement="top">Tooltip on top</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
 	theme="light"
 	placement="bottom">Tooltip on bottom</button>
 
 <button
-	tooltip="Tooltip" 
+	tooltip="Tooltip"
 	theme="light"
 	placement="left">Tooltip on left</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
 	theme="light"
 	placement="right">Tooltip on right</button>
 
@@ -61,16 +83,16 @@
 	(events)="handleTooltipEvents($event)">Tooltip on top</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
-	placement="top" 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+	placement="top"
 	show-delay="500"
 	(events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea." 
+	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
 	placement="top"
-	trigger="click" 
-	hide-delay="1000" 
+	trigger="click"
+	hide-delay="1000"
 	(events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
 
 <h3>Methods</h3>
