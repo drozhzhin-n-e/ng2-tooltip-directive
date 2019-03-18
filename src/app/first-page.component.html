@@ -33,18 +33,16 @@
 
 <h3>HTML template content</h3>
 <ng-template #HtmlContent>
-  <div>
-    <h3>Hello I'm h3 tag !</h3>
-    <hr />
-    <p>I can write some description in p tag as <em>italic</em></p>
-  </div>
+  <h3>Hello I'm h3 tag!</h3>
+  <hr />
+  <p>I can write some description in p tag as <em>italic</em></p>
 </ng-template>
 
 <button
 	[tooltip]="HtmlContent"
   trigger="click"
   content-type="template"
-	hide-delay="5500"
+	hide-delay="5000"
   placement="top">Click me, I will show you HTML content
 </button>
 
