@@ -11,9 +11,14 @@ import {
   OnInit, 
   Output, 
   EventEmitter, 
-  OnDestroy } from '@angular/core';
+  OnDestroy,
+  Inject,
+  Optional
+} from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
+import { TooltipOptionsService } from './tooltip-options.service';
 import { defaultOptions } from './options';
+
 
 export interface AdComponent {
   data: any;
@@ -184,7 +189,9 @@ export class TooltipDirective {
 
   @Output() events: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private elementRef: ElementRef,
+  constructor(
+    @Optional() @Inject(TooltipOptionsService) private initOptions,
+    private elementRef: ElementRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private injector: Injector) {
@@ -363,8 +370,8 @@ export class TooltipDirective {
       return check;
   }
 
-  applyOptionsDefault(defaultOptions, options):void {
-    this._defaultOptions = Object.assign({}, defaultOptions);
+  applyOptionsDefault(defaultOptions, options): void {
+    this._defaultOptions = Object.assign({}, defaultOptions, this.initOptions || {});
     this.options = Object.assign(this._defaultOptions, options);
   }
 
