@@ -67,6 +67,12 @@ export class TooltipDirective {
     }
   }
 
+  @Input('content-type') set contentType(value: string) {
+    if (value){
+      this._options['content-type'] = value;
+    }
+  }
+
   @Input('delay') set delay(value: number) {
     if (value){
       this._options['delay'] = value;
@@ -116,7 +122,7 @@ export class TooltipDirective {
   @Input('shadow') set shadow(value: boolean) {
     this._options['shadow'] = value;
   }
-  
+
   @Input('theme') set theme(value: boolean) {
     if (value){
       this._options['theme'] = value;
@@ -252,7 +258,7 @@ export class TooltipDirective {
 
     this.createTimeoutId = window.setTimeout(() => {
       this.appendComponentToBody(TooltipComponent);
-    }, this.showDelay); 
+    }, this.showDelay);
 
     this.showTimeoutId = window.setTimeout(() => {
       this.showTooltipElem();
@@ -294,12 +300,12 @@ export class TooltipDirective {
     this.events.emit('hide');
   }
 
-  appendComponentToBody(component: any, data: any = {}):void {    
+  appendComponentToBody(component: any, data: any = {}):void {
     this.componentRef = this.componentFactoryResolver
       .resolveComponentFactory(component)
       .create(this.injector);
 
-    (<AdComponent>this.componentRef.instance).data = { 
+    (<AdComponent>this.componentRef.instance).data = {
       value: this.tooltipValue,
       element: this.elementRef.nativeElement,
       elementPosition: this.elementPosition,
@@ -359,7 +365,7 @@ export class TooltipDirective {
 
     if (this.options['trigger'] != 'click') {
       return false;
-    } 
+    }
 
     return true;
   }
