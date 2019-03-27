@@ -1,4 +1,6 @@
-export const defaultOptions = {
+import { TooltipOptions } from './tooltip-options.interface';
+
+export const defaultOptions: TooltipOptions = {
 	'placement': 'top',
 	'content-type': 'string',
 	'delay': 0,
