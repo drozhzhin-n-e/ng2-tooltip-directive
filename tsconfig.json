@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng2-tooltip-directive": [
+        "dist/ng2-tooltip-directive"
+      ],
+      "ng2-tooltip-directive/*": [
+        "dist/ng2-tooltip-directive/*"
+      ]
+    }
   }
 }
