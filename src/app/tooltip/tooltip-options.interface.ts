@@ -1,5 +1,6 @@
 export interface TooltipOptions {
     'placement': string;
+    'content-type': 'string' | 'html' | 'template';
     'delay': number;
     'show-delay': number;
     'hide-delay': number;

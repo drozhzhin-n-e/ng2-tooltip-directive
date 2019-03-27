@@ -6,7 +6,7 @@ import { TooltipModule, TooltipOptions } from './tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TooltipModule } from 'ng2-tooltip-directive';
+//import { TooltipModule } from 'ng2-tooltip-directive';
 //import { TooltipModule } from './tooltip/tooltip.module';
 import { FirstPageComponent } from './first-page.component';
 import { SecondPageComponent } from './second-page.component';
@@ -19,7 +19,7 @@ import { SecondPageComponent } from './second-page.component';
   ],
   imports: [
     BrowserModule,
-    TooltipModule.forRoot({} as TooltipOptions), // initialize custom, app-wide, default tooltip-options here
+    TooltipModule.forRoot({/* default tooltip-options */} as TooltipOptions), // initialize custom, app-wide, default tooltip-options here
     // or import normally i.e. TooltipModule,
     AppRoutingModule,
   ],
