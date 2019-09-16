@@ -1,22 +1,33 @@
-import { TooltipOptions } from './tooltip-options.interface';
-
-export const defaultOptions: TooltipOptions = {
+export const defaultOptions = {
 	'placement': 'top',
-	'content-type': 'string',
-	'delay': 0,
-	'show-delay': 0,
-	'hide-delay': 300,
-	'hide-delay-mobile': 1500,
-	'z-index': 0,
-	'animation-duration': 300,
-	'animation-duration-default': 300,
+	'contentType': 'string',
+	'showDelay': 0,
+	'hideDelay': 300,
+	'hideDelayMobile': 1500,
+	'zIndex': 0,
+	'animationDuration': 300,
+	'animationDurationDefault': 300,
 	'trigger': 'hover',
-	'tooltip-class': '',
+	'tooltipClass': '',
 	'display': true,
-	'display-mobile': true,
+	'displayMobile': true,
 	'shadow': true,
 	'theme': 'dark',
 	'offset': 8,
-	'max-width': '',
+	'maxWidth': '',
 	'id': false
 }
+
+export const backwardCompatibilityOptions = {
+    'delay': 'showDelay',
+    'show-delay': 'showDelay',
+    'hide-delay': 'hideDelay',
+    'hide-delay-mobile': 'hideDelayMobile',
+    'z-index': 'zIndex',
+    'animation-duration': 'animationDuration',
+    'animation-duration-default': 'animationDurationDefault',
+    'tooltip-class': 'tooltipClass',
+    'display-mobile': 'displayMobile',
+    'max-width': 'maxWidth'
+}
+
