@@ -67,7 +67,7 @@ You can pass HTML as content :
 | theme            | "dark", "light"                     | "dark"  | Theme of tooltip background and text.       |
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
-| max-width        | string                              | "200px" | Maximum width of the tooltip.               |
+| max-width        | number                              | 200     | Maximum width of the tooltip.               |
 | content-type     | "string", "html', "template"        | "string"| The content type passed to the tooltip      |
 
 ## Events
