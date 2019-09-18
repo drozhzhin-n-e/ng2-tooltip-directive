@@ -15,7 +15,8 @@ export const defaultOptions = {
 	'theme': 'dark',
 	'offset': 8,
 	'maxWidth': '',
-	'id': false
+	'id': false,
+	'hideDelayAfterClick': 2000
 }
 
 export const backwardCompatibilityOptions = {
@@ -30,4 +31,3 @@ export const backwardCompatibilityOptions = {
     'display-mobile': 'displayMobile',
     'max-width': 'maxWidth'
 }
-

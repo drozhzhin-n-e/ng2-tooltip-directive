@@ -1,97 +1,66 @@
-<h3>Basic usage</h3>
-
-<button
-	tooltip="Tooltip"
-	placement="top">Tooltip on top</button>
-
-<button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	placement="bottom">Tooltip on bottom</button>
-
-<button
-	tooltip="Tooltip"
-	placement="left">Tooltip on left</button>
-
-<button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	placement="right"
-	show-delay="500">Tooltip on right, show delay 500ms</button>
-
-<button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	trigger="click"
-	hide-delay="1500"
-	placement="top">Click me, hide delay 1s</button>
-
-<h3>SVG</h3>
-<svg width="100" height="100">
-  <rect x="20" y="20" width="30" height="20" style="fill:black" tooltip="RECTANGLE">
-  </rect>
-  <circle tooltip="Lorem ipsum dolor sit amet" style="fill:red" cx="50" cy="50" r="10">
-  </circle>
-</svg>
-
-<h3>HTML template content</h3>
-<ng-template #HtmlContent>
-  <h3>Hello I'm h3 tag!</h3>
-  <hr />
-  <p>I can write some description in p tag as <em>italic</em></p>
-</ng-template>
-
-<button
-	[tooltip]="HtmlContent"
-  trigger="click"
-  content-type="template"
-	hide-delay="5000"
-  placement="top">Click me, I will show you HTML content
-</button>
-
-<button
-  tooltip="<h3>Lorem ipsum dolor <em>sit amet</em>, his ut dicunt recteque ea.</h3>"
-  content-type="html"
-	placement="top">Simple HTML</button>
-
-<h3>Light theme</h3>
-
-<button
-	tooltip="Tooltip"
-	theme="light"
-	placement="top">Tooltip on top</button>
-
-<button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	theme="light"
-	placement="bottom">Tooltip on bottom</button>
-
-<button
-	tooltip="Tooltip"
-	theme="light"
-	placement="left">Tooltip on left</button>
-
-<button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	theme="light"
-	placement="right">Tooltip on right</button>
+<h3>Properties</h3>
+<p>
+    <button tooltip="Tooltip on right" placement="right">Tooltip on right</button>
+</p>
+<p>
+    <button tooltip="Simple and <b>bold text</b>">Tooltip with HTML content</button>
+</p>
+<p>
+    <button tooltip="Show delay 1000ms" [show-delay]="1000">Show delay 1000ms</button>
+</p>
+<p>
+    <button tooltip="Hide delay 1000ms" [hide-delay]="1000">Hide delay 1000ms</button>
+</p>
+<p>
+    <button tooltip="Z-index 1000" [z-index]="1000">Z-index 1000</button>
+</p>
+<p>
+    <button tooltip="Animation duration 1000ms" [animation-duration]="1000">Animation duration 1000ms</button>
+</p>
+<p>
+    <button tooltip="On click" [trigger]="'click'">On click</button>
+</p>
+<p>
+    <button tooltip="Custom class" [tooltip-class]="'custom-class'">Custom class</button>
+</p>
+<p>
+    <button tooltip="Display false" [display]="false">Display false</button>
+</p>
+<p>
+    <button tooltip="Display mobile false" [display-mobile]="false">Display mobile false</button>
+</p>
+<p>
+    <button tooltip="Without a shadow" [shadow]="false">Without a shadow</button>
+</p>
+<p>
+    <button tooltip="Light theme" [theme]="'light'">Light theme</button>
+</p>
+<p>
+    <button tooltip="Offset 16px" [offset]="16">Offset 16px</button>
+</p>
+<p>
+    <button tooltip="Maximum width 100 pixels" [max-width]="100">Maximum width 100 pixels</button>
+</p>
 
 <h3>Events</h3>
 
 <button
-	tooltip="Tooltip"
-	placement="top"
-	(events)="handleTooltipEvents($event)">Tooltip on top</button>
+    tooltip="Tooltip"
+    placement="top"
+    (events)="handleTooltipEvents($event)">Tooltip on top</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	placement="top"
-	show-delay="500"
-	(events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+    placement="top"
+    show-delay="500"
+    (events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	placement="top"
-	trigger="click"
-	hide-delay="1000"
-	(events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+    placement="top"
+    trigger="click"
+    hide-delay="1000"
+    (events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
 
 <h3>Methods</h3>
 
@@ -99,8 +68,5 @@
 <button (click)="someTooltip.hide()">Hide tooltip</button>
 
 <button
-	tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-	id="someTooltip">Tooltip on top</button>
-
-<h3>Navigation</h3>
-<a routerLink="/second-page">Second page</a>
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+    id="someTooltip">Tooltip on top</button>

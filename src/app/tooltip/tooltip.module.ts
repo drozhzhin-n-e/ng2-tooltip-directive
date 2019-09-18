@@ -22,7 +22,7 @@ import { TooltipOptionsService } from './tooltip-options.service';
 })
 export class TooltipModule {
 
-      static forRoot(initOptions: TooltipOptions): ModuleWithProviders {
+    static forRoot(initOptions: TooltipOptions): ModuleWithProviders {
         return {
             ngModule: TooltipModule,
             providers: [

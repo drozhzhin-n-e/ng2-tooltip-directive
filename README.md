@@ -10,45 +10,74 @@ Install the npm package.
         
 Import `Ng2Module`:
 
-    import { TooltipModule } from 'ng2-tooltip-directive';
-     
-    @NgModule({
-        imports: [ TooltipModule ]
-    }) 
-
+```ts
+import { TooltipModule } from 'ng2-tooltip-directive';
+ 
+@NgModule({
+    imports: [ TooltipModule ]
+}) 
+```
 
 ## Usage
     
 Options can be set in the directive tag, so they have the highest priority.
 
-    <span tooltip="Tooltip" placement="top" show-delay="500">Tooltip on top</span>
+```html
+<span tooltip="Tooltip" placement="top" show-delay="500">Tooltip on top</span>
+```
 
 You may pass as an object:
 
-	<span tooltip="Tooltip" [options]="myOptions">Tooltip on left</span>
-
-	myOptions = {
-	    'placement': 'left',
-	    'show-delay': 500
-	}
+```html
+<span tooltip="Tooltip" [options]="myOptions">Tooltip on left</span>
+```
+```ts
+myOptions = {
+    'placement': 'left',
+    'show-delay': 500
+}
+```
 
 You can pass HTML as content :
 
-  ```
-  <span tooltip="<p>Hello i'm a <strong>bold</strong> text !</p>">
-    Tooltip with HTML content
-  </span>
-  ```
+```html
+<span tooltip="<p>Hello i'm a <strong>bold</strong> text !</p>">
+  Tooltip with HTML content
+</span>
+```
 
-  ```
-  <ng-template #HtmlContent>
-    <p>Hello i'm a <strong>bold</strong> text!</p>
-  </ng-template>
+```html
+<ng-template #HtmlContent>
+  <p>Hello i'm a <strong>bold</strong> text!</p>
+</ng-template>
 
-  <span [tooltip]="HtmlContent" content-type="template">
-    Tooltip with template content
-  </span>
-  ```
+<span [tooltip]="HtmlContent" content-type="template">
+  Tooltip with template content
+</span>
+```
+
+## Set default values
+
+Create a file with your settings, for example:
+```ts
+import { TooltipOptions } from 'ng2-tooltip-directive';
+
+export const MyDefaultTooltipOptions: TooltipOptions = {
+  'show-delay': 500
+}
+```
+    
+And pass your parameters when importing the module:
+```ts
+import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
+import { MyDefaultTooltipOptions } from './my-default-options';
+ 
+@NgModule({
+    imports: [ 
+      TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions)
+    ]
+})
+```
 
 ## Properties
 
@@ -68,7 +97,8 @@ You can pass HTML as content :
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
 | max-width        | number                              | 200     | Maximum width of the tooltip.               |
-| content-type     | "string", "html', "template"        | "string"| The content type passed to the tooltip      |
+| content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip      |
+| hideDelayAfterClick | number | 2000 | Tooltip hiding delay for "click" trigger. |
 
 ## Events
 

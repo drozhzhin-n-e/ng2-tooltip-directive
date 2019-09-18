@@ -2,6 +2,7 @@ import { Directive, ElementRef, HostListener, Input, ComponentFactoryResolver, E
 import { TooltipComponent } from './tooltip.component';
 import { TooltipOptionsService } from './tooltip-options.service';
 import { defaultOptions, backwardCompatibilityOptions } from './options';
+import { TooltipOptions } from './tooltip-options.interface';
 
 export interface AdComponent {
     data: any;
@@ -31,7 +32,7 @@ export class TooltipDirective {
     _destroyDelay: number;
     componentSubscribe: any;
 
-    @Input('options') set options(value: any) {
+    @Input('options') set options(value: TooltipOptions) {
         if (value && defaultOptions) {
             this._options = value;
         }
@@ -57,6 +58,7 @@ export class TooltipDirective {
     @Input('id') id: any;
     @Input('show-delay') showDelay: number;
     @Input('hide-delay') hideDelay: number;
+    @Input('hideDelayAfterClick') hideDelayAfterClick: number;
 
     get isTooltipDestroyed() {
         return this.componentRef && this.componentRef.hostView.destroyed;
@@ -109,7 +111,7 @@ export class TooltipDirective {
         this.show();
         this.hideAfterClickTimeoutId = window.setTimeout(() => {
             this.destroyTooltip();
-        }, 0)
+        }, this.options['hideDelayAfterClick'])
     }
 
     ngOnInit(): void {
@@ -117,9 +119,10 @@ export class TooltipDirective {
     }
 
     ngOnChanges(changes) {
-        this.options = Object.assign({}, this.options, this.getProperties(changes));
-        this.renameProperties();
-        this.applyOptionsDefault(defaultOptions, this.options);
+        let changedOptions = this.getProperties(changes);
+
+        this.applyOptionsDefault(defaultOptions, changedOptions);
+        this.options = this.renameProperties(this.options);
     }
 
     ngOnDestroy(): void {
@@ -158,17 +161,22 @@ export class TooltipDirective {
             if (prop !== 'options' && prop !== 'tooltipValue'){
                 properties[prop] = changes[prop].currentValue;
             }
+            if (prop === 'options'){
+                properties = changes[prop].currentValue;
+            }
         }
         return properties;
     }
 
-    renameProperties() {
-        for (var prop in this.options) {
+    renameProperties(options: TooltipOptions) {
+        for (var prop in options) {
             if (backwardCompatibilityOptions[prop]) {
-                this.options[backwardCompatibilityOptions[prop]] = this.options[prop];
-                delete this.options[prop];
+                options[backwardCompatibilityOptions[prop]] = options[prop];
+                delete options[prop];
             }
         }
+
+        return options;
     }
 
     getElementPosition(): void {
@@ -302,8 +310,8 @@ export class TooltipDirective {
     }
 
     applyOptionsDefault(defaultOptions, options): void {
-        this._defaultOptions = Object.assign({}, defaultOptions);
-        this.options = Object.assign(this._defaultOptions, options);
+        this.initOptions = this.renameProperties(this.initOptions);
+        this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
     }
 
     handleEvents(event: any) {
