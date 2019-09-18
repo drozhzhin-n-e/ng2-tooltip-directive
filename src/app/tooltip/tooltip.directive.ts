@@ -214,7 +214,10 @@ export class TooltipDirective {
 
                 this.appRef.detachView(this.componentRef.hostView);
                 this.componentRef.destroy();
-                this.events.emit('hidden');
+                this.events.emit({
+                    type: 'hidden', 
+                    position: this.elementPosition
+                });
             }, options.fast ? 0 : this.destroyDelay);
         }
     }
@@ -222,7 +225,10 @@ export class TooltipDirective {
     showTooltipElem(): void {
         this.clearTimeouts();
         ( < AdComponent > this.componentRef.instance).show = true;
-        this.events.emit('show');
+        this.events.emit({
+            type: 'show',
+            position: this.elementPosition
+        });
     }
 
     hideTooltip(): void {
@@ -230,7 +236,10 @@ export class TooltipDirective {
             return;
         }
         ( < AdComponent > this.componentRef.instance).show = false;
-        this.events.emit('hide');
+        this.events.emit({
+            type: 'hide',
+            position: this.elementPosition
+        });
     }
 
     appendComponentToBody(component: any, data: any = {}): void {
@@ -315,8 +324,11 @@ export class TooltipDirective {
     }
 
     handleEvents(event: any) {
-        if (event === 'shown') {
-            this.events.emit('shown');
+        if (event.type === 'shown') {
+            this.events.emit({
+                type: 'shown',
+                position: this.elementPosition
+            });
         }
     }
 

@@ -41,7 +41,7 @@ myOptions = {
 You can pass HTML as content :
 
 ```html
-<span tooltip="<p>Hello i'm a <strong>bold</strong> text !</p>">
+<span tooltip="<p>Hello i'm a <strong>bold</strong> text!</p>">
   Tooltip with HTML content
 </span>
 ```
@@ -97,7 +97,7 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
 | max-width        | number                              | 200     | Maximum width of the tooltip.               |
-| content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip      |
+| content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip. |
 | hideDelayAfterClick | number | 2000 | Tooltip hiding delay for "click" trigger. |
 
 ## Events
@@ -106,10 +106,10 @@ When you call events, the delays that are specified in the options in the direct
 
 | Event            | Description                                                                                 |
 |------------------|---------------------------------------------------------------------------------------------|
-| show             | The event is called before the tooltip appears.                                             |
-| shown            | The event is called after the animation of the appearance of the tooltip.                   |
-| hide             | The event is called before the tooltip is hidden.                                           |
-| hidden           | The event is called after the animation of the tooltip is hidden.                           |
+| {type: "show", position: DOMRect} | The event is called before the tooltip appears. |
+| {type: "shown", position: DOMRect} | The event is called after the animation of the appearance of the tooltip. |
+| {type: "hide", position: DOMRect} | The event is called before the tooltip is hidden. |
+| {type: "hidden", position: DOMRect} | The event is called after the animation of the tooltip is hidden. |
 
 ## Methods
 

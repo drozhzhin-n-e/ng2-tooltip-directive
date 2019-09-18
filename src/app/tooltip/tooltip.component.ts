@@ -29,7 +29,9 @@ export class TooltipComponent {
     @HostListener('transitionend', ['$event'])
     transitionEnd(event) {
         if (this.show) {
-            this.events.emit('shown');
+            this.events.emit({
+                type: 'shown'
+            });
         }
     }
 
