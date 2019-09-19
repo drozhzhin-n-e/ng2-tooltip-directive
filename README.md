@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive.svg?branch=master)](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive)
 
+🔬️ Help make Tooltips better by [answering a few questions](https://docs.google.com/forms/d/e/1FAIpQLSfuDYQLyGWLApEtnQH5wD2_HNjEM7lV_XJAhrQZEPm14mBZ-A/viewform).
+
 ## Installation
 
 Install the npm package.
