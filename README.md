@@ -99,6 +99,7 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | max-width        | number                              | 200     | Maximum width of the tooltip.               |
 | content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip. |
 | hideDelayAfterClick | number | 2000 | Tooltip hiding delay for "click" trigger. |
+| pointerEvents | "auto", "none" | "none" | Defines whether or not an element reacts to pointer events. |
 
 ## Events
 
