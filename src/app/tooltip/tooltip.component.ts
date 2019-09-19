@@ -21,6 +21,7 @@ export class TooltipComponent {
     @HostBinding('style.left') hostStyleLeft: string;
     @HostBinding('style.z-index') hostStyleZIndex: number;
     @HostBinding('style.transition') hostStyleTransition: string;
+    @HostBinding('style.width') hostStyleWidth: string;
     @HostBinding('style.max-width') hostStyleMaxWidth: string;
     @HostBinding('style.pointer-events') hostStylePointerEvents: string;
     @HostBinding('class.tooltip-show') hostClassShow: boolean;
@@ -78,10 +79,7 @@ export class TooltipComponent {
 
     ngOnInit() {
         this.setPlacementClass();
-        this.setZIndex();
-        this.setPointerEvents();
         this.setCustomClass();
-        this.setAnimationDuration();
         this.setStyles();
     }
 
@@ -149,8 +147,13 @@ export class TooltipComponent {
     }
 
     setStyles() {
+        this.setZIndex();
+        this.setPointerEvents();
+        this.setAnimationDuration();
+
         this.hostClassShadow = this.options['shadow'];
         this.hostClassLight = this.isThemeLight;
         this.hostStyleMaxWidth = this.options['maxWidth']+"px";
+        this.hostStyleWidth = this.options['width'] ? this.options['width']+"px" : '';
     }
 }

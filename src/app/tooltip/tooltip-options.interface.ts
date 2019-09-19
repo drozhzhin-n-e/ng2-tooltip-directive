@@ -15,6 +15,7 @@ export interface TooltipOptions {
     'shadow'?: boolean;
     'theme'?: string;
     'offset'?: number;
+    'width'?: number;
     'max-width'?: number;
     'id'?: string | number;
     'hideDelayAfterClick'?: number;

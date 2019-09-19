@@ -54,6 +54,7 @@ export class TooltipDirective {
     @Input('shadow') shadow: boolean;
     @Input('theme') theme: boolean;
     @Input('offset') offset: number;
+    @Input('width') width: number;
     @Input('max-width') maxWidth: number;
     @Input('id') id: any;
     @Input('show-delay') showDelay: number;

@@ -96,8 +96,9 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | theme            | "dark", "light"                     | "dark"  | Theme of tooltip background and text.       |
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
-| max-width        | number                              | 200     | Maximum width of the tooltip.               |
-| content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip. |
+| width | number | undefined | Width of the tooltip. |
+| max-width | number | 200 | Maximum width of the tooltip. |
+| content-type | "string", "html', "template" | "string" | The content type passed to the tooltip. |
 | hideDelayAfterClick | number | 2000 | Tooltip hiding delay for "click" trigger. |
 | pointerEvents | "auto", "none" | "none" | Defines whether or not an element reacts to pointer events. |
 
