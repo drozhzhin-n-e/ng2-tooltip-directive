@@ -18,4 +18,5 @@ export interface TooltipOptions {
     'max-width'?: number;
     'id'?: string | number;
     'hideDelayAfterClick'?: number;
+    'pointerEvents'?: 'auto' | 'none';
 }

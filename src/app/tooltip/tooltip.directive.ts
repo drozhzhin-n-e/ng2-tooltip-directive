@@ -59,6 +59,7 @@ export class TooltipDirective {
     @Input('show-delay') showDelay: number;
     @Input('hide-delay') hideDelay: number;
     @Input('hideDelayAfterClick') hideDelayAfterClick: number;
+    @Input('pointerEvents') pointerEvents: 'auto' | 'none';
 
     get isTooltipDestroyed() {
         return this.componentRef && this.componentRef.hostView.destroyed;
