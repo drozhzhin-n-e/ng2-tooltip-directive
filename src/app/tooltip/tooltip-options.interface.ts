@@ -20,4 +20,5 @@ export interface TooltipOptions {
     'id'?: string | number;
     'hideDelayAfterClick'?: number;
     'pointerEvents'?: 'auto' | 'none';
+    'position'?: {top: number, left: number};
 }

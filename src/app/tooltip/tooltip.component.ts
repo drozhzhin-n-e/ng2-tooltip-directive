@@ -86,12 +86,18 @@ export class TooltipComponent {
     setPosition(): void {
         const isSvg = this.element instanceof SVGElement;
         const tooltip = this.elementRef.nativeElement;
+        const isCustomPosition = !this.elementPosition.right;
 
-        const elementHeight = isSvg ? this.element.getBBox().height : this.element.offsetHeight;
-        const elementWidth = isSvg ? this.element.getBBox().width : this.element.offsetWidth;
+        let elementHeight = isSvg ? this.element.getBBox().height : this.element.offsetHeight;
+        let elementWidth = isSvg ? this.element.getBBox().width : this.element.offsetWidth;
         const tooltipHeight = tooltip.clientHeight;
         const tooltipWidth = tooltip.clientWidth;
         const scrollY = window.pageYOffset;
+
+        if (isCustomPosition) {
+            elementHeight = 0;
+            elementWidth = 0;
+        }
 
         if (this.placement === 'top') {
             this.hostStyleTop = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset) + 'px';

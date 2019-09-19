@@ -61,6 +61,7 @@ export class TooltipDirective {
     @Input('hide-delay') hideDelay: number;
     @Input('hideDelayAfterClick') hideDelayAfterClick: number;
     @Input('pointerEvents') pointerEvents: 'auto' | 'none';
+    @Input('position') position: {top: number, left: number};
 
     get isTooltipDestroyed() {
         return this.componentRef && this.componentRef.hostView.destroyed;
@@ -75,6 +76,14 @@ export class TooltipDirective {
     }
     set destroyDelay(value: number) {
         this._destroyDelay = value;
+    }
+
+    get tooltipPosition() {
+        if (this.options['position']) {
+            return this.options['position'];
+        } else {
+            return this.elementPosition;
+        }
     }
 
     @Output() events: EventEmitter < any > = new EventEmitter < any > ();
@@ -218,7 +227,7 @@ export class TooltipDirective {
                 this.componentRef.destroy();
                 this.events.emit({
                     type: 'hidden', 
-                    position: this.elementPosition
+                    position: this.tooltipPosition
                 });
             }, options.fast ? 0 : this.destroyDelay);
         }
@@ -229,7 +238,7 @@ export class TooltipDirective {
         ( < AdComponent > this.componentRef.instance).show = true;
         this.events.emit({
             type: 'show',
-            position: this.elementPosition
+            position: this.tooltipPosition
         });
     }
 
@@ -240,7 +249,7 @@ export class TooltipDirective {
         ( < AdComponent > this.componentRef.instance).show = false;
         this.events.emit({
             type: 'hide',
-            position: this.elementPosition
+            position: this.tooltipPosition
         });
     }
 
@@ -252,7 +261,7 @@ export class TooltipDirective {
         ( < AdComponent > this.componentRef.instance).data = {
             value: this.tooltipValue,
             element: this.elementRef.nativeElement,
-            elementPosition: this.elementPosition,
+            elementPosition: this.tooltipPosition,
             options: this.options
         }
         this.appRef.attachView(this.componentRef.hostView);
@@ -329,7 +338,7 @@ export class TooltipDirective {
         if (event.type === 'shown') {
             this.events.emit({
                 type: 'shown',
-                position: this.elementPosition
+                position: this.tooltipPosition
             });
         }
     }
