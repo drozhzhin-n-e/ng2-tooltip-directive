@@ -84,6 +84,30 @@ export class TooltipComponent {
     }
 
     setPosition(): void {
+        if (this.placement === 'auto') {
+            const placements = ['right', 'bottom', 'top', 'left'];
+            for (const placement of placements) {
+                if (this.setHostStyle(placement)) {
+                  this.setPlacementClass(placement);
+                  return;
+                }
+            }
+        } else {
+            this.setHostStyle(this.placement);
+        }
+    }
+
+
+
+    setPlacementClass(placement?: string): void {
+        if (this.placement !== 'auto') {
+            this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + this.placement);
+        } else if (placement) {
+            this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
+        }
+    }
+
+    setHostStyle(placement: string): boolean {
         const isSvg = this.element instanceof SVGElement;
         const tooltip = this.elementRef.nativeElement;
         const isCustomPosition = !this.elementPosition.right;
@@ -99,33 +123,45 @@ export class TooltipComponent {
             elementWidth = 0;
         }
 
-        if (this.placement === 'top') {
-            this.hostStyleTop = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset) + 'px';
+        let topStyle;
+        let leftStyle;
+
+        if (placement === 'top') {
+          topStyle = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
         }
 
-        if (this.placement === 'bottom') {
-            this.hostStyleTop = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset + 'px';
+        if (placement === 'bottom') {
+          topStyle = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset;
         }
 
-        if (this.placement === 'top' || this.placement === 'bottom') {
-            this.hostStyleLeft = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2 + 'px';
+        if (placement === 'top' || placement === 'bottom') {
+          leftStyle = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2;
         }
 
-        if (this.placement === 'left') {
-            this.hostStyleLeft = this.elementPosition.left - tooltipWidth - this.tooltipOffset + 'px';
+        if (placement === 'left') {
+          leftStyle = this.elementPosition.left - tooltipWidth - this.tooltipOffset;
         }
 
-        if (this.placement === 'right') {
-            this.hostStyleLeft = this.elementPosition.left + elementWidth + this.tooltipOffset + 'px';
+        if (placement === 'right') {
+          leftStyle = this.elementPosition.left + elementWidth + this.tooltipOffset;
         }
 
-        if (this.placement === 'left' || this.placement === 'right') {
-            this.hostStyleTop = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2 + 'px';
+        if (placement === 'left' || placement === 'right') {
+          topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
         }
-    }
 
-    setPlacementClass(): void {
-        this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + this.placement);
+        const topEdge = topStyle;
+        const bottomEdge = topStyle + tooltipHeight;
+        const leftEdge = leftStyle;
+        const rightEdge = leftStyle + tooltipWidth;
+
+        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.placement === 'auto') {
+          return false;
+        }
+
+        this.hostStyleTop = topStyle + 'px';
+        this.hostStyleLeft = leftStyle + 'px';
+        return true;
     }
 
     setZIndex(): void {
