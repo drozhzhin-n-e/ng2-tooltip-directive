@@ -43,6 +43,7 @@ export class TooltipDirective {
 
     @Input('tooltip') tooltipValue: string;
     @Input('placement') placement: string;
+    @Input('autoPlacement') autoPlacement: boolean;
     @Input('content-type') contentType: string;
     @Input('hide-delay-mobile') hideDelayMobile: number;
     @Input('z-index') zIndex: number;

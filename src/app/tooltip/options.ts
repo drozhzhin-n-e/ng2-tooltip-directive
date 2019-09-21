@@ -1,5 +1,6 @@
 export const defaultOptions = {
 	'placement': 'top',
+	'autoPlacement': true,
 	'contentType': 'string',
 	'showDelay': 0,
 	'hideDelay': 300,
@@ -31,3 +32,4 @@ export const backwardCompatibilityOptions = {
     'display-mobile': 'displayMobile',
     'max-width': 'maxWidth'
 }
+

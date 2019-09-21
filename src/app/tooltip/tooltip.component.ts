@@ -51,6 +51,10 @@ export class TooltipComponent {
         return this.data.options.placement;
     }
 
+    get autoPlacement() {
+        return this.data.options.autoPlacement;
+    }
+
     get element() {
         return this.data.element;
     }
@@ -84,27 +88,24 @@ export class TooltipComponent {
     }
 
     setPosition(): void {
-        if (this.placement === 'auto') {
-            const placements = ['right', 'bottom', 'top', 'left'];
+        if (this.setHostStyle(this.placement) || !this.autoPlacement) {
+            this.setPlacementClass(this.placement);
+            return;
+        } else {
+            const placements = ['top', 'right', 'bottom', 'left'];
+
             for (const placement of placements) {
                 if (this.setHostStyle(placement)) {
-                  this.setPlacementClass(placement);
-                  return;
+                    this.setPlacementClass(placement);
+                    return;
                 }
             }
-        } else {
-            this.setHostStyle(this.placement);
         }
     }
 
 
-
-    setPlacementClass(placement?: string): void {
-        if (this.placement !== 'auto') {
-            this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + this.placement);
-        } else if (placement) {
-            this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
-        }
+    setPlacementClass(placement ? : string): void {
+        this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
     }
 
     setHostStyle(placement: string): boolean {
@@ -127,27 +128,27 @@ export class TooltipComponent {
         let leftStyle;
 
         if (placement === 'top') {
-          topStyle = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
+            topStyle = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
         }
 
         if (placement === 'bottom') {
-          topStyle = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset;
+            topStyle = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset;
         }
 
         if (placement === 'top' || placement === 'bottom') {
-          leftStyle = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2;
+            leftStyle = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2;
         }
 
         if (placement === 'left') {
-          leftStyle = this.elementPosition.left - tooltipWidth - this.tooltipOffset;
+            leftStyle = this.elementPosition.left - tooltipWidth - this.tooltipOffset;
         }
 
         if (placement === 'right') {
-          leftStyle = this.elementPosition.left + elementWidth + this.tooltipOffset;
+            leftStyle = this.elementPosition.left + elementWidth + this.tooltipOffset;
         }
 
         if (placement === 'left' || placement === 'right') {
-          topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
+            topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
         }
 
         const topEdge = topStyle;
@@ -155,8 +156,8 @@ export class TooltipComponent {
         const leftEdge = leftStyle;
         const rightEdge = leftStyle + tooltipWidth;
 
-        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.placement === 'auto') {
-          return false;
+        if ((topEdge < 0 || bottomEdge > window.innerHeight || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.autoPlacement) {
+            return false;
         }
 
         this.hostStyleTop = topStyle + 'px';
@@ -195,7 +196,7 @@ export class TooltipComponent {
 
         this.hostClassShadow = this.options['shadow'];
         this.hostClassLight = this.isThemeLight;
-        this.hostStyleMaxWidth = this.options['maxWidth']+"px";
-        this.hostStyleWidth = this.options['width'] ? this.options['width']+"px" : '';
+        this.hostStyleMaxWidth = this.options['maxWidth'] + "px";
+        this.hostStyleWidth = this.options['width'] ? this.options['width'] + "px" : '';
     }
 }
