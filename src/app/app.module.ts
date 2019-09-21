@@ -2,14 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TooltipModule, TooltipOptions } from './tooltip';
-//import { TooltipModule } from 'ng2-tooltip-directive';
+// import { TooltipModule } from 'ng2-tooltip-directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//import { TooltipModule } from 'ng2-tooltip-directive';
-//import { TooltipModule } from './tooltip/tooltip.module';
+// import { TooltipModule } from 'ng2-tooltip-directive';
+// import { TooltipModule } from './tooltip/tooltip.module';
 import { FirstPageComponent } from './first-page.component';
 import { SecondPageComponent } from './second-page.component';
+import {AngularDraggableModule} from 'angular2-draggable';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SecondPageComponent } from './second-page.component';
     TooltipModule.forRoot({/* default tooltip-options */} as TooltipOptions), // initialize custom, app-wide, default tooltip-options here
     // or import normally i.e. TooltipModule,
     AppRoutingModule,
+    AngularDraggableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
