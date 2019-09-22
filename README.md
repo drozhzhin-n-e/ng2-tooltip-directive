@@ -1,6 +1,6 @@
 # Tooltip for Angular
 
-[![Build Status](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive.svg?branch=master)](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive)
+[![Build Status](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive.svg?branch=master)](https://travis-ci.org/drozhzhin-n-e/ng2-tooltip-directive) <img src="https://badgen.net/bundlephobia/min/ng2-tooltip-directive" />
 
 🔬️ Help make Tooltips better by [answering a few questions](https://docs.google.com/forms/d/e/1FAIpQLSfuDYQLyGWLApEtnQH5wD2_HNjEM7lV_XJAhrQZEPm14mBZ-A/viewform).
 
@@ -86,6 +86,7 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | name             | type                                | default | description                                 |
 |------------------|-------------------------------------|---------|---------------------------------------------|
 | placement        | "top", "bottom", "left", "right"    | "top"   | The position of the tooltip.                |
+| autoPlacement    | boolean                             | true    | Place the tooltip so that it does not go beyond the borders of the browser window. |
 | show-delay       | number                              | 0       | The delay in ms before showing the tooltip. |
 | hide-delay       | number                              | 300     | The delay in ms before removing the tooltip. |
 | hide-delay-mobile      | number                        | 1500    | Delay in milliseconds before hiding the tooltip (for mobile devices). |
