@@ -113,8 +113,8 @@ export class TooltipComponent {
         const tooltip = this.elementRef.nativeElement;
         const isCustomPosition = !this.elementPosition.right;
 
-        let elementHeight = isSvg ? this.element.getBBox().height : this.element.offsetHeight;
-        let elementWidth = isSvg ? this.element.getBBox().width : this.element.offsetWidth;
+        let elementHeight = isSvg ? this.element.getBoundingClientRect().height : this.element.offsetHeight;
+        let elementWidth = isSvg ? this.element.getBoundingClientRect().width : this.element.offsetWidth;
         const tooltipHeight = tooltip.clientHeight;
         const tooltipWidth = tooltip.clientWidth;
         const scrollY = window.pageYOffset;
