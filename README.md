@@ -4,6 +4,11 @@
 
 🔬️ Help make Tooltips better by [answering a few questions](https://docs.google.com/forms/d/e/1FAIpQLSfuDYQLyGWLApEtnQH5wD2_HNjEM7lV_XJAhrQZEPm14mBZ-A/viewform).
 
+The tooltip is a pop-up tip that appears when you hover over an item or click on it.
+
+## Demo
+http://crystalui.org/components/tooltip
+
 ## Installation
 
 Install the npm package.
@@ -125,9 +130,6 @@ If you specified the directive options, they will be taken into account when cal
 |------------------|---------------------------------------------------------------------------------------------|
 | show()           | Shows the tooltip                                                                           |
 | hide()           | Hides the tooltip                                                                           |
-
-## Demo
-http://crystalui.org/components/tooltip
 
 ## Sponsors
 
