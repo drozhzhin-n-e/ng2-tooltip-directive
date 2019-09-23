@@ -1,6 +1,6 @@
 <div *ngIf="isThemeLight" class="tooltip-arrow"></div>
 
-<div *ngIf="options['content-type'] === 'template' else htmlOrStringTemplate" 
+<div *ngIf="options['contentType'] === 'template' else htmlOrStringTemplate" 
     [ngClass]="{'tooltip-arrow': isThemeLight }">
 
 	<ng-container *ngTemplateOutlet="value"></ng-container>
