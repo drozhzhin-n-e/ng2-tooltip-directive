@@ -7,7 +7,7 @@ The tooltip is a pop-up tip that appears when you hover over an item or click on
 🔬️ Help make Tooltips better by [answering a few questions](https://docs.google.com/forms/d/e/1FAIpQLSfuDYQLyGWLApEtnQH5wD2_HNjEM7lV_XJAhrQZEPm14mBZ-A/viewform).
 
 ## Demo
-http://crystalui.org/components/tooltip
+http://ivylab.space/tooltip
 
 ## Installation
 
