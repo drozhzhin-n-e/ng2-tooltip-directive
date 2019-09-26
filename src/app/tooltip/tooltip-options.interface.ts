@@ -6,6 +6,7 @@ export interface TooltipOptions {
     'show-delay'?: number;
     'hide-delay'?: number;
     'hide-delay-mobile'?: number;
+    'hideDelayTouchscreen'?: number;
     'z-index'?: number;
     'animation-duration'?: number;
     'animation-duration-default'?: number;
@@ -13,6 +14,7 @@ export interface TooltipOptions {
     'tooltip-class'?: string;
     'display'?: boolean;
     'display-mobile'?: boolean;
+    'displayTouchscreen'?: boolean;
     'shadow'?: boolean;
     'theme'?: string;
     'offset'?: number;

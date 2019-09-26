@@ -94,9 +94,9 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | autoPlacement    | boolean                             | true    | Place the tooltip so that it does not go beyond the borders of the browser window. |
 | show-delay       | number                              | 0       | The delay in ms before showing the tooltip. |
 | hide-delay       | number                              | 300     | The delay in ms before removing the tooltip. |
-| hide-delay-mobile      | number                        | 1500    | Delay in milliseconds before hiding the tooltip (for mobile devices). |
+| hideDelayTouchscreen | number                          | 0       | Delay in milliseconds before hiding the tooltip (for mobile devices). |
 | display          | boolean                             | true    | Tooltip availability for display.           |
-| display-mobile   | boolean                             | true    | Display the tooltip on mobile devices.      |
+| displayTouchscreen | boolean                           | true    | Display the tooltip on mobile devices.      |
 | z-index          | number                              | 0       | Z-index of the tooltip.                     |
 | trigger          | "hover", "click"                    | "hover" | Specifies how the tooltip is triggered. Control the closing time with "hide-delay". |
 | tooltip-class    | string                              |         | Classes to be passed to the tooltip.        |

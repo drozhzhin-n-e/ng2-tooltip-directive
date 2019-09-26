@@ -46,12 +46,14 @@ export class TooltipDirective {
     @Input('autoPlacement') autoPlacement: boolean;
     @Input('content-type') contentType: string;
     @Input('hide-delay-mobile') hideDelayMobile: number;
+    @Input('hideDelayTouchscreen') hideDelayTouchscreen: number;
     @Input('z-index') zIndex: number;
     @Input('animation-duration') animationDuration: number;
     @Input('trigger') trigger: string;
     @Input('tooltip-class') tooltipClass: string;
     @Input('display') display: boolean;
     @Input('display-mobile') displayMobile: boolean;
+    @Input('displayTouchscreen') displayTouchscreen: boolean;
     @Input('shadow') shadow: boolean;
     @Input('theme') theme: boolean;
     @Input('offset') offset: number;
@@ -131,10 +133,11 @@ export class TooltipDirective {
     }
 
     ngOnChanges(changes) {
+        this.initOptions = this.renameProperties(this.initOptions);
         let changedOptions = this.getProperties(changes);
+        changedOptions = this.renameProperties(changedOptions);
 
         this.applyOptionsDefault(defaultOptions, changedOptions);
-        this.options = this.renameProperties(this.options);
     }
 
     ngOnDestroy(): void {
@@ -148,22 +151,14 @@ export class TooltipDirective {
     }
 
     getShowDelay() {
-        return this.isTouchScreen ? 0 : this.options['showDelay'];
+        return this.options['showDelay'];
     }
 
     getHideDelay() {
         const hideDelay = this.options['hideDelay'];
-        const hideDelayMobile = this.options['hideDelayMobile'];
+        const hideDelayTouchscreen = this.options['hideDelayTouchscreen'];
 
-        if (this.isTouchScreen) {
-            if (hideDelay >= hideDelayMobile) {
-                return hideDelay;
-            } else {
-                return hideDelayMobile;
-            }
-        } else {
-            return hideDelay;
-        }
+        return this.isTouchScreen ? hideDelayTouchscreen : hideDelay;
     }
 
     getProperties(changes){
@@ -297,7 +292,7 @@ export class TooltipDirective {
             return false;
         }
 
-        if (this.options['displayMobile'] == false && this.isTouchScreen) {
+        if (this.options['displayTouchscreen'] == false && this.isTouchScreen) {
             return false;
         }
 
@@ -313,7 +308,7 @@ export class TooltipDirective {
             return false;
         }
 
-        if (this.options['displayMobile'] == false && this.isTouchScreen) {
+        if (this.options['displayTouchscreen'] == false && this.isTouchScreen) {
             return false;
         }
 
@@ -325,13 +320,22 @@ export class TooltipDirective {
     }
 
     get isTouchScreen() {
-        let check = false;
-        navigator.maxTouchPoints ? check = true : check = false;
-        return check;
+        var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+        var mq = function(query) {
+            return window.matchMedia(query).matches;
+        }
+
+        if (('ontouchstart' in window)) {
+            return true;
+        }
+
+        // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+        // https://git.io/vznFH
+        var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+        return mq(query);
     }
 
     applyOptionsDefault(defaultOptions, options): void {
-        this.initOptions = this.renameProperties(this.initOptions);
         this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
     }
 
