@@ -156,7 +156,7 @@ export class TooltipComponent {
         const leftEdge = leftStyle;
         const rightEdge = leftStyle + tooltipWidth;
 
-        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.autoPlacement) {
+        if ((topEdge < 0 || bottomEdge > (window.innerHeight + scrollY) || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.autoPlacement) {
             return false;
         }
 
