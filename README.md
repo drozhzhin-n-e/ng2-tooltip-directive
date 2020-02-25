@@ -14,7 +14,7 @@ http://ivylab.space/tooltip
 
 Install the npm package.
 
-    npm i ngx-tooltip
+ npm i ng2-tooltip-directive
         
 Import `Ng2Module`:
 
