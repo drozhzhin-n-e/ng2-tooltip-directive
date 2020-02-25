@@ -13,7 +13,7 @@ http://ivylab.space/tooltip
 
 Install the npm package.
 
-    npm i ng2-tooltip-directive
+    npm i ngx-tooltip-directive
         
 Import `Ng2Module`:
 
