@@ -163,7 +163,7 @@ export class TooltipComponent {
             const bottomEdge = topStyle + tooltipHeight;
             const leftEdge = leftStyle;
             const rightEdge = leftStyle + tooltipWidth;
-            const bodyHeight = document.body.clientHeight;
+            const bodyHeight = window.innerHeight + scrollY;
             const bodyWidth = document.body.clientWidth;
 
             if (topEdge < 0 || bottomEdge > bodyHeight || leftEdge < 0 || rightEdge > bodyWidth) {
