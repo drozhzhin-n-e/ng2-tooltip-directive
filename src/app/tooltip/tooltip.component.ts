@@ -188,9 +188,11 @@ export class TooltipComponent {
         }
     }
 
-    setCustomClass() {
+    setCustomClass(){
         if (this.options['tooltipClass']) {
-            this.renderer.addClass(this.elementRef.nativeElement, this.options['tooltipClass']);
+            this.options['tooltipClass'].split(' ').forEach(className => {
+                this.renderer.addClass(this.elementRef.nativeElement, className);
+            });
         }
     }
 
