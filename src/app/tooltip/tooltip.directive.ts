@@ -337,7 +337,7 @@ export class TooltipDirective {
     }
 
     applyOptionsDefault(defaultOptions, options): void {
-        this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
+        this.options = Object.assign({}, defaultOptions, this.initOptions || {}, this.options, options);
     }
 
     handleEvents(event: any) {
@@ -350,6 +350,9 @@ export class TooltipDirective {
     }
 
     public show() {
+        if (!this.tooltipValue) { // if values is empty don't show
+            return;
+        }
         if (!this.componentRef || this.isTooltipDestroyed) {
             this.createTooltip();
         } else if (!this.isTooltipDestroyed) {
