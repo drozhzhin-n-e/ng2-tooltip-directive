@@ -7,6 +7,7 @@ import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEm
     styleUrls: ['./tooltip.component.sass']
 })
 
+
 export class TooltipComponent implements OnInit {
 
     _show = false;
@@ -81,33 +82,42 @@ export class TooltipComponent implements OnInit {
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
     ngOnInit() {
-        this.setPlacementClass();
         this.setCustomClass();
         this.setStyles();
     }
 
     setPosition(): void {
-        if (this.setHostStyle(this.placement) || !this.autoPlacement) {
+        if (this.setHostStyle(this.placement)) {
             this.setPlacementClass(this.placement);
             return;
         } else {
+            /* Is tooltip outside the visible area */
             const placements = ['top', 'right', 'bottom', 'left'];
+            let isPlacementSet;
 
             for (const placement of placements) {
                 if (this.setHostStyle(placement)) {
                     this.setPlacementClass(placement);
+                    isPlacementSet = true;
                     return;
                 }
+            }
+
+            /* Set original placement */
+            if (!isPlacementSet) {
+                this.setHostStyle(this.placement, true);
+                this.setPlacementClass(this.placement);
             }
         }
     }
 
 
-    setPlacementClass(placement?: string): void {
+
+    setPlacementClass(placement: string): void {
         this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
     }
 
-    setHostStyle(placement: string): boolean {
+    setHostStyle(placement: string, disableAutoPlacement: boolean = false): boolean {
         const isSvg = this.element instanceof SVGElement;
         const tooltip = this.elementRef.nativeElement;
         const isCustomPosition = !this.elementPosition.right;
@@ -150,14 +160,18 @@ export class TooltipComponent implements OnInit {
             topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
         }
 
-        const topEdge = topStyle;
-        const bottomEdge = topStyle + tooltipHeight;
-        const leftEdge = leftStyle;
-        const rightEdge = leftStyle + tooltipWidth;
+        /* Is tooltip outside the visible area */
+        if (this.autoPlacement && !disableAutoPlacement) {
+            const topEdge = topStyle;
+            const bottomEdge = topStyle + tooltipHeight;
+            const leftEdge = leftStyle;
+            const rightEdge = leftStyle + tooltipWidth;
+            const bodyHeight = window.innerHeight + scrollY;
+            const bodyWidth = document.body.clientWidth;
 
-        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0
-            || rightEdge > document.body.clientWidth) && this.autoPlacement) {
-            return false;
+            if (topEdge < 0 || bottomEdge > bodyHeight || leftEdge < 0 || rightEdge > bodyWidth) {
+                return false;
+            }
         }
 
         this.hostStyleTop = topStyle + 'px';
@@ -177,9 +191,11 @@ export class TooltipComponent implements OnInit {
         }
     }
 
-    setCustomClass() {
+    setCustomClass(){
         if (this.options.tooltipClass) {
-            this.renderer.addClass(this.elementRef.nativeElement, this.options.tooltipClass);
+            this.options.tooltipClass.split(' ').forEach(className => {
+                this.renderer.addClass(this.elementRef.nativeElement, className);
+            });
         }
     }
 

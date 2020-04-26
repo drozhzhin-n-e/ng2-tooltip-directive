@@ -12,7 +12,8 @@ export interface AdComponent {
 }
 
 @Directive({
-    selector: '[tooltip]'
+    selector: '[tooltip]',
+    exportAs: 'tooltip',
 })
 
 export class TooltipDirective {
