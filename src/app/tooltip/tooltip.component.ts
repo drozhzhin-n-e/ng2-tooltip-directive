@@ -1,22 +1,21 @@
 import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter, Renderer2} from '@angular/core';
 
 @Component({
+    // tslint:disable-next-line: component-selector
     selector: 'tooltip',
     templateUrl: './tooltip.component.html',
-    host: {
-        'class': 'tooltip'
-    },
     styleUrls: ['./tooltip.component.sass']
 })
 
-export class TooltipComponent {
+export class TooltipComponent implements OnInit {
 
-    _show: boolean = false;
+    _show = false;
 
     @Input() data: any;
 
     events = new EventEmitter();
 
+    @HostBinding('class') hostClass = 'tooltip';
     @HostBinding('style.top') hostStyleTop: string;
     @HostBinding('style.left') hostStyleLeft: string;
     @HostBinding('style.z-index') hostStyleZIndex: number;
@@ -76,7 +75,7 @@ export class TooltipComponent {
     }
 
     get isThemeLight() {
-        return this.options['theme'] === 'light';
+        return this.options.theme === 'light';
     }
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
@@ -104,7 +103,7 @@ export class TooltipComponent {
     }
 
 
-    setPlacementClass(placement ? : string): void {
+    setPlacementClass(placement?: string): void {
         this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
     }
 
@@ -156,7 +155,8 @@ export class TooltipComponent {
         const leftEdge = leftStyle;
         const rightEdge = leftStyle + tooltipWidth;
 
-        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0 || rightEdge > document.body.clientWidth) && this.autoPlacement) {
+        if ((topEdge < 0 || bottomEdge > document.body.clientHeight || leftEdge < 0
+            || rightEdge > document.body.clientWidth) && this.autoPlacement) {
             return false;
         }
 
@@ -166,26 +166,26 @@ export class TooltipComponent {
     }
 
     setZIndex(): void {
-        if (this.options['zIndex'] !== 0) {
-            this.hostStyleZIndex = this.options['zIndex'];
+        if (this.options.zIndex !== 0) {
+            this.hostStyleZIndex = this.options.zIndex;
         }
     }
 
     setPointerEvents(): void {
-        if (this.options['pointerEvents']) {
-            this.hostStylePointerEvents = this.options['pointerEvents'];
+        if (this.options.pointerEvents) {
+            this.hostStylePointerEvents = this.options.pointerEvents;
         }
     }
 
     setCustomClass() {
-        if (this.options['tooltipClass']) {
-            this.renderer.addClass(this.elementRef.nativeElement, this.options['tooltipClass']);
+        if (this.options.tooltipClass) {
+            this.renderer.addClass(this.elementRef.nativeElement, this.options.tooltipClass);
         }
     }
 
     setAnimationDuration() {
-        if (Number(this.options['animationDuration']) != this.options['animationDurationDefault']) {
-            this.hostStyleTransition = 'opacity ' + this.options['animationDuration'] + 'ms';
+        if (Number(this.options.animationDuration) !== this.options.animationDurationDefault) {
+            this.hostStyleTransition = 'opacity ' + this.options.animationDuration + 'ms';
         }
     }
 
@@ -194,9 +194,9 @@ export class TooltipComponent {
         this.setPointerEvents();
         this.setAnimationDuration();
 
-        this.hostClassShadow = this.options['shadow'];
+        this.hostClassShadow = this.options.shadow;
         this.hostClassLight = this.isThemeLight;
-        this.hostStyleMaxWidth = this.options['maxWidth'] + "px";
-        this.hostStyleWidth = this.options['width'] ? this.options['width'] + "px" : '';
+        this.hostStyleMaxWidth = this.options.maxWidth + 'px';
+        this.hostStyleWidth = this.options.width ? this.options.width + 'px' : '';
     }
 }
