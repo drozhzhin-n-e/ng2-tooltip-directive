@@ -130,7 +130,6 @@ export class TooltipDirective {
     }
 
     ngOnInit(): void {
-        
     }
 
     ngOnChanges(changes) {
@@ -163,17 +162,21 @@ export class TooltipDirective {
     }
 
     getProperties(changes){
-        let properties = {};
+        let directiveProperties:any = {};
+        let customProperties:any = {};
+        let allProperties:any = {};
 
         for (var prop in changes) {
             if (prop !== 'options' && prop !== 'tooltipValue'){
-                properties[prop] = changes[prop].currentValue;
+                directiveProperties[prop] = changes[prop].currentValue;
             }
             if (prop === 'options'){
-                properties = changes[prop].currentValue;
+                customProperties = changes[prop].currentValue;
             }
         }
-        return properties;
+
+        allProperties = Object.assign({}, customProperties, directiveProperties);
+        return allProperties;
     }
 
     renameProperties(options: TooltipOptions) {
@@ -210,7 +213,6 @@ export class TooltipDirective {
         this.clearTimeouts();
 
         if (this.isTooltipDestroyed == false) {
-
             this.hideTimeoutId = window.setTimeout(() => {
                 this.hideTooltip();
             }, options.fast ? 0 : this.getHideDelay());
