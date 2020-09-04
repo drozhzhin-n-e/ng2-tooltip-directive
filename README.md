@@ -9,6 +9,10 @@ The tooltip is a pop-up tip that appears when you hover over an item or click on
 ## Demo
 http://ivylab.space/tooltip
 
+## Stackblitz Demo
+
+https://stackblitz.com/edit/ng2-tooltip
+
 ## Installation
 
 Install the npm package.
@@ -124,7 +128,7 @@ When you call events, the delays that are specified in the options in the direct
 
 ## Methods
 
-If you specified the directive options, they will be taken into account when calling methods. Including the delay before the appearance and hiding of the tooltip.
+If you have specified the directive options, they will be taken into account when calling methods. Including the delay before the appearance and hiding of the tooltip.
 
 | Method           | Description                                                                                 |
 |------------------|---------------------------------------------------------------------------------------------|
