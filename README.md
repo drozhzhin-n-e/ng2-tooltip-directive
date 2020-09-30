@@ -110,6 +110,7 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 | hideDelayAfterClick | number                           | 2000    | Tooltip hiding delay for "click" trigger.   |
 | pointerEvents    | "auto", "none"                      | "none"  | Defines whether or not an element reacts to pointer events. |
 | position         | {top: number, left: number}         | undefined | The tooltip coordinates relative to the browser window. |
+| scroll-context   | HTMLElement                         | window  | contains a parent element with an `overflow` property with a value other than `visible`. Designed for displaying the tooltip correctly |
 
 ## Events
 

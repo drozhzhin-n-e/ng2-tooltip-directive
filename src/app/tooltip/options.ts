@@ -19,7 +19,8 @@ export const defaultOptions = {
 	'offset': 8,
 	'maxWidth': '',
 	'id': false,
-	'hideDelayAfterClick': 2000
+	'hideDelayAfterClick': 2000,
+	'scrollContext': window
 }
 
 export const backwardCompatibilityOptions = {

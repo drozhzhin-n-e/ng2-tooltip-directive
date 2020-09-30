@@ -111,10 +111,15 @@ export class TooltipComponent {
 
 
     setPlacementClass(placement: string): void {
+        const placements = ['top', 'right', 'bottom', 'left'];
+        for (const placement of placements) {
+            this.renderer.removeClass(this.elementRef.nativeElement, 'tooltip-' + placement);
+        }
         this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
     }
 
     setHostStyle(placement: string, disableAutoPlacement: boolean = false): boolean {
+        this.data.elementPosition = this.element.getBoundingClientRect();
         const isSvg = this.element instanceof SVGElement;
         const tooltip = this.elementRef.nativeElement;
         const isCustomPosition = !this.elementPosition.right;
@@ -123,7 +128,14 @@ export class TooltipComponent {
         let elementWidth = isSvg ? this.element.getBoundingClientRect().width : this.element.offsetWidth;
         const tooltipHeight = tooltip.clientHeight;
         const tooltipWidth = tooltip.clientWidth;
-        const scrollY = window.pageYOffset;
+        
+        let scrollY;
+
+        if(this.options['scrollContext'] === window){
+            scrollY = window.pageYOffset;
+        }else{
+            scrollY = this.options['scrollContext'].scrollTop;
+        }
 
         if (isCustomPosition) {
             elementHeight = 0;
