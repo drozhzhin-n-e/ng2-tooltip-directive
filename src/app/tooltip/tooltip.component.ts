@@ -126,8 +126,8 @@ export class TooltipComponent {
 
         let elementHeight = isSvg ? this.element.getBoundingClientRect().height : this.element.offsetHeight;
         let elementWidth = isSvg ? this.element.getBoundingClientRect().width : this.element.offsetWidth;
-        const tooltipHeight = tooltip.clientHeight;
-        const tooltipWidth = tooltip.clientWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        const tooltipWidth = tooltip.offsetWidth;
         
         let scrollY;
 
@@ -166,7 +166,7 @@ export class TooltipComponent {
         }
 
         if (placement === 'left' || placement === 'right') {
-            topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
+            topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.offsetHeight / 2;
         }
 
         /* Is tooltip outside the visible area */
@@ -175,8 +175,8 @@ export class TooltipComponent {
             const bottomEdge = topStyle + tooltipHeight;
             const leftEdge = leftStyle;
             const rightEdge = leftStyle + tooltipWidth;
-            const bodyHeight = window.innerHeight + scrollY;
-            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = this.options['scrollContext'] === window ? window.innerHeight + scrollY : this.options['scrollContext'].offsetHeight + scrollY;
+            const bodyWidth = this.options['scrollContext'] === window ? document.body.offsetWidth : this.options['scrollContext'].offsetWidth;
 
             if (topEdge < 0 || bottomEdge > bodyHeight || leftEdge < 0 || rightEdge > bodyWidth) {
                 return false;
