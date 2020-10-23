@@ -66,6 +66,7 @@ export class TooltipDirective {
     @Input('hideDelayAfterClick') hideDelayAfterClick: number;
     @Input('pointerEvents') pointerEvents: 'auto' | 'none';
     @Input('position') position: {top: number, left: number};
+    @Input('scroll-context') scrollContext: HTMLElement;
 
     get isTooltipDestroyed() {
         return this.componentRef && this.componentRef.hostView.destroyed;

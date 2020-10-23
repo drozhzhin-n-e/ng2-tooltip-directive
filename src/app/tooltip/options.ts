@@ -19,7 +19,8 @@ export const defaultOptions = {
 	'offset': 8,
 	'maxWidth': '',
 	'id': false,
-	'hideDelayAfterClick': 2000
+	'hideDelayAfterClick': 2000,
+	'scrollContext': window
 }
 
 export const backwardCompatibilityOptions = {
@@ -34,5 +35,6 @@ export const backwardCompatibilityOptions = {
     'tooltip-class': 'tooltipClass',
     'display-mobile': 'displayTouchscreen',
     'displayMobile': 'displayTouchscreen',
-    'max-width': 'maxWidth'
+	'max-width': 'maxWidth',
+	'scroll-context': 'scrollContext'
 }

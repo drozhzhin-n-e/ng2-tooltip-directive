@@ -24,4 +24,5 @@ export interface TooltipOptions {
     'hideDelayAfterClick'?: number;
     'pointerEvents'?: 'auto' | 'none';
     'position'?: {top: number, left: number};
+    'scroll-context'?: HTMLElement;
 }

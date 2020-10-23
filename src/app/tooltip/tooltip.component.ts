@@ -90,7 +90,7 @@ export class TooltipComponent {
             return;
         } else {
             /* Is tooltip outside the visible area */
-            const placements = ['top', 'right', 'bottom', 'left'];
+            const placements = Array.from(new Set([this.placement].concat(['top', 'right', 'bottom', 'left'])));
             let isPlacementSet;
 
             for (const placement of placements) {
@@ -111,19 +111,31 @@ export class TooltipComponent {
 
 
     setPlacementClass(placement: string): void {
+        const placements = ['top', 'right', 'bottom', 'left'];
+        for (const placement of placements) {
+            this.renderer.removeClass(this.elementRef.nativeElement, 'tooltip-' + placement);
+        }
         this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
     }
 
     setHostStyle(placement: string, disableAutoPlacement: boolean = false): boolean {
+        this.data.elementPosition = this.element.getBoundingClientRect();
         const isSvg = this.element instanceof SVGElement;
         const tooltip = this.elementRef.nativeElement;
         const isCustomPosition = !this.elementPosition.right;
 
         let elementHeight = isSvg ? this.element.getBoundingClientRect().height : this.element.offsetHeight;
         let elementWidth = isSvg ? this.element.getBoundingClientRect().width : this.element.offsetWidth;
-        const tooltipHeight = tooltip.clientHeight;
-        const tooltipWidth = tooltip.clientWidth;
-        const scrollY = window.pageYOffset;
+        const tooltipHeight = tooltip.offsetHeight;
+        const tooltipWidth = tooltip.offsetWidth;
+        
+        let scrollY;
+
+        if(this.options['scrollContext'] === window){
+            scrollY = window.pageYOffset;
+        }else{
+            scrollY = this.options['scrollContext'].scrollTop;
+        }
 
         if (isCustomPosition) {
             elementHeight = 0;
@@ -154,7 +166,7 @@ export class TooltipComponent {
         }
 
         if (placement === 'left' || placement === 'right') {
-            topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
+            topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.offsetHeight / 2;
         }
 
         /* Is tooltip outside the visible area */
@@ -163,8 +175,8 @@ export class TooltipComponent {
             const bottomEdge = topStyle + tooltipHeight;
             const leftEdge = leftStyle;
             const rightEdge = leftStyle + tooltipWidth;
-            const bodyHeight = window.innerHeight + scrollY;
-            const bodyWidth = document.body.clientWidth;
+            const bodyHeight = this.options['scrollContext'] === window ? window.innerHeight + scrollY : this.options['scrollContext'].offsetHeight + scrollY;
+            const bodyWidth = this.options['scrollContext'] === window ? document.body.offsetWidth : this.options['scrollContext'].offsetWidth;
 
             if (topEdge < 0 || bottomEdge > bodyHeight || leftEdge < 0 || rightEdge > bodyWidth) {
                 return false;
