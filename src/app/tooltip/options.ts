@@ -35,5 +35,6 @@ export const backwardCompatibilityOptions = {
     'tooltip-class': 'tooltipClass',
     'display-mobile': 'displayTouchscreen',
     'displayMobile': 'displayTouchscreen',
-    'max-width': 'maxWidth'
+	'max-width': 'maxWidth',
+	'scroll-context': 'scrollContext'
 }

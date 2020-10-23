@@ -90,7 +90,7 @@ export class TooltipComponent {
             return;
         } else {
             /* Is tooltip outside the visible area */
-            const placements = ['top', 'right', 'bottom', 'left'];
+            const placements = Array.from(new Set([this.placement].concat(['top', 'right', 'bottom', 'left'])));
             let isPlacementSet;
 
             for (const placement of placements) {
