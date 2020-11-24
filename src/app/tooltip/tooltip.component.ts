@@ -123,6 +123,7 @@ export class TooltipComponent {
         let elementWidth = isSvg ? this.element.getBoundingClientRect().width : this.element.offsetWidth;
         const tooltipHeight = tooltip.clientHeight;
         const tooltipWidth = tooltip.clientWidth;
+        const scrollX = window.pageXOffset;
         const scrollY = window.pageYOffset;
 
         if (isCustomPosition) {
@@ -142,15 +143,15 @@ export class TooltipComponent {
         }
 
         if (placement === 'top' || placement === 'bottom') {
-            leftStyle = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2;
+            leftStyle = (this.elementPosition.left + scrollX + elementWidth / 2) - tooltipWidth / 2;
         }
 
         if (placement === 'left') {
-            leftStyle = this.elementPosition.left - tooltipWidth - this.tooltipOffset;
+            leftStyle = this.elementPosition.left + scrollX - tooltipWidth - this.tooltipOffset;
         }
 
         if (placement === 'right') {
-            leftStyle = this.elementPosition.left + elementWidth + this.tooltipOffset;
+            leftStyle = this.elementPosition.left + scrollX + elementWidth + this.tooltipOffset;
         }
 
         if (placement === 'left' || placement === 'right') {
