@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tooltipAppNg10": {
+    "tooltipAppNg11": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tooltipAppNg10",
+            "outputPath": "dist/tooltipAppNg11",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tooltipAppNg10:build"
+            "browserTarget": "tooltipAppNg11:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tooltipAppNg10:build:production"
+              "browserTarget": "tooltipAppNg11:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tooltipAppNg10:build"
+            "browserTarget": "tooltipAppNg11:build"
           }
         },
         "test": {
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "tooltipAppNg10:serve"
+            "devServerTarget": "tooltipAppNg11:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tooltipAppNg10:serve:production"
+              "devServerTarget": "tooltipAppNg11:serve:production"
             }
           }
         }
@@ -165,7 +165,7 @@
       }
     }
   },
-  "defaultProject": "tooltipAppNg10",
+  "defaultProject": "tooltipAppNg11",
   "cli": {
     "analytics": "147f1090-ac55-49ed-ba1c-fbb5e8178aad"
   }
