@@ -1,82 +1,88 @@
 <h3>Properties</h3>
 
 <p>
-    <button ngDraggable tooltip="Drag me any where and see the adjustment of the tooltip auto placing">Tooltip auto placement</button>
+  <button ngDraggable tooltip="Drag me any where and see the adjustment of the tooltip auto placing">Tooltip auto
+    placement
+  </button>
 </p>
 <p>
-    <button tooltip="Tooltip on right" placement="right">Tooltip on right</button>
+  <button placement="right" tooltip="Tooltip on right">Tooltip on right</button>
 </p>
 <p>
-    <button tooltip="Simple and <b>bold text</b>">Tooltip with HTML content</button>
+  <button tooltip="Simple and <b>bold text</b>">Tooltip with HTML content</button>
 </p>
 <p>
-    <button tooltip="Show delay 1000ms" [show-delay]="1000">Show delay 1000ms</button>
+  <button [show-delay]="1000" tooltip="Show delay 1000ms">Show delay 1000ms</button>
 </p>
 <p>
-    <button tooltip="Hide delay 1000ms" [hide-delay]="1000">Hide delay 1000ms</button>
+  <button [hide-delay]="1000" tooltip="Hide delay 1000ms">Hide delay 1000ms</button>
 </p>
 <p>
-    <button tooltip="Hide delay on touch screen 2000ms" [hideDelayTouchscreen]="2000">Hide delay on touch screen 2000ms</button>
+  <button [hideDelayTouchscreen]="2000" tooltip="Hide delay on touch screen 2000ms">Hide delay on touch screen 2000ms
+  </button>
 </p>
 <p>
-    <button tooltip="Z-index 1000" [z-index]="1000">Z-index 1000</button>
+  <button [z-index]="1000" tooltip="Z-index 1000">Z-index 1000</button>
 </p>
 <p>
-    <button tooltip="Animation duration 1000ms" [animation-duration]="1000">Animation duration 1000ms</button>
+  <button [animation-duration]="1000" tooltip="Animation duration 1000ms">Animation duration 1000ms</button>
 </p>
 <p>
-    <button tooltip="On click" [trigger]="'click'">On click</button>
+  <button [trigger]="'click'" tooltip="On click">On click</button>
 </p>
 <p>
-    <button tooltip="Custom class" [tooltip-class]="'custom-class'">Custom class</button>
+  <button [tooltip-class]="'custom-class'" tooltip="Custom class">Custom class</button>
 </p>
 <p>
-    <button tooltip="Disabled" [display]="false">Disabled</button>
+  <button [display]="false" tooltip="Disabled">Disabled</button>
 </p>
 <p>
-    <button tooltip="Disabled on touch screen" [displayTouchscreen]="false">Disabled on touch screen</button>
+  <button [displayTouchscreen]="false" tooltip="Disabled on touch screen">Disabled on touch screen</button>
 </p>
 <p>
-    <button tooltip="Without a shadow" [shadow]="false">Without a shadow</button>
+  <button [shadow]="false" tooltip="Without a shadow">Without a shadow</button>
 </p>
 <p>
-    <button tooltip="Light theme" [theme]="'light'">Light theme</button>
+  <button [theme]="'light'" tooltip="Light theme">Light theme</button>
 </p>
 <p>
-    <button tooltip="Offset 16px" [offset]="16">Offset 16px</button>
+  <button [offset]="16" tooltip="Offset 16px">Offset 16px</button>
 </p>
 <p>
-    <button tooltip="Maximum width 100 pixels" [max-width]="100">Maximum width 100 pixels</button>
+  <button [max-width]="100" tooltip="Maximum width 100 pixels">Maximum width 100 pixels</button>
 </p>
 <p>
-    <button tooltip="Pointer events auto" [pointerEvents]="'auto'" [hide-delay]="1000">Pointer events auto</button>
+  <button [hide-delay]="1000" [pointerEvents]="'auto'" tooltip="Pointer events auto">Pointer events auto</button>
 </p>
 <p>
-    <button tooltip="Width 200 pixels" [width]="200">Width 200 pixels</button>
+  <button [width]="200" tooltip="Width 200 pixels">Width 200 pixels</button>
 </p>
 <p>
-    <button tooltip="Custom position" placement="bottom" [position]="{top: 0, left: 200}">Custom position</button>
+  <button [position]="{top: 0, left: 200}" placement="bottom" tooltip="Custom position">Custom position</button>
 </p>
 
 <h3>Events</h3>
 
 <button
-    tooltip="Tooltip"
+    (events)="handleTooltipEvents($event)"
     placement="top"
-    (events)="handleTooltipEvents($event)">Tooltip on top</button>
+    tooltip="Tooltip">Tooltip on top
+</button>
 
 <button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+    (events)="handleTooltipEvents($event)"
     placement="top"
     show-delay="500"
-    (events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea.">Tooltip on top, show delay 500ms
+</button>
 
 <button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-    placement="top"
-    trigger="click"
+    (events)="handleTooltipEvents($event)"
     hide-delay="1000"
-    (events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
+    placement="top"
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
+    trigger="click">Click me, hide delay 1s
+</button>
 
 <h3>Methods</h3>
 
@@ -84,5 +90,6 @@
 <button (click)="someTooltip.hide()">Hide tooltip</button>
 
 <button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-    id="someTooltip">Tooltip on top</button>
+    id="someTooltip"
+    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea.">Tooltip on top
+</button>
