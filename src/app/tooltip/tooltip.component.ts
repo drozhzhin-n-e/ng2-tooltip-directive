@@ -1,16 +1,17 @@
-import {Component, ElementRef, HostListener, HostBinding, Input, OnInit, EventEmitter, Renderer2} from '@angular/core';
+import { Component, ElementRef, HostListener, HostBinding, Input, EventEmitter, Renderer2, OnInit } from '@angular/core';
+import { TooltipOptions } from './tooltip-options.interface';
 
 @Component({
     selector: 'tooltip',
     templateUrl: './tooltip.component.html',
     host: {
-        'class': 'tooltip'
+        class: 'tooltip'
     },
     styleUrls: ['./tooltip.component.sass']
 })
 
-export class TooltipComponent {
-    _show: boolean = false;
+export class TooltipComponent implements OnInit {
+    _show = false;
     events = new EventEmitter();
 
     @Input() data: any;
@@ -27,7 +28,7 @@ export class TooltipComponent {
     @HostBinding('class.tooltip-light') hostClassLight: boolean;
 
     @HostListener('transitionend', ['$event'])
-    transitionEnd(event) {
+    transitionEnd(event): void {
         if (this.show) {
             this.events.emit({
                 type: 'shown'
@@ -45,27 +46,27 @@ export class TooltipComponent {
         return this._show;
     }
 
-    get placement() {
+    get placement(): string {
         return this.data.options.placement;
     }
 
-    get autoPlacement() {
+    get autoPlacement(): string {
         return this.data.options.autoPlacement;
     }
 
-    get element() {
+    get element(): any {
         return this.data.element;
     }
 
-    get elementPosition() {
+    get elementPosition(): any {
         return this.data.elementPosition;
     }
 
-    get options() {
+    get options(): TooltipOptions {
         return this.data.options;
     }
 
-    get value() {
+    get value(): any {
         return this.data.value;
     }
 
@@ -73,13 +74,13 @@ export class TooltipComponent {
         return Number(this.data.options.offset);
     }
 
-    get isThemeLight() {
-        return this.options['theme'] === 'light';
+    get isThemeLight(): boolean {
+        return this.options.theme === 'light';
     }
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.setCustomClass();
         this.setStyles();
     }
@@ -108,7 +109,6 @@ export class TooltipComponent {
             }
         }
     }
-
 
     setPlacementClass(placement: string): void {
         this.renderer.addClass(this.elementRef.nativeElement, 'tooltip-' + placement);
@@ -177,39 +177,39 @@ export class TooltipComponent {
     }
 
     setZIndex(): void {
-        if (this.options['zIndex'] !== 0) {
-            this.hostStyleZIndex = this.options['zIndex'];
+        if (this.options.zIndex !== 0) {
+            this.hostStyleZIndex = this.options.zIndex;
         }
     }
 
     setPointerEvents(): void {
-        if (this.options['pointerEvents']) {
-            this.hostStylePointerEvents = this.options['pointerEvents'];
+        if (this.options.pointerEvents) {
+            this.hostStylePointerEvents = this.options.pointerEvents;
         }
     }
 
-    setCustomClass(){
-        if (this.options['tooltipClass']) {
-            this.options['tooltipClass'].split(' ').forEach(className => {
+    setCustomClass(): void {
+        if (this.options.tooltipClass) {
+            this.options.tooltipClass.split(' ').forEach(className => {
                 this.renderer.addClass(this.elementRef.nativeElement, className);
             });
         }
     }
 
-    setAnimationDuration() {
-        if (Number(this.options['animationDuration']) != this.options['animationDurationDefault']) {
-            this.hostStyleTransition = 'opacity ' + this.options['animationDuration'] + 'ms';
+    setAnimationDuration(): void {
+        if (Number(this.options.animationDuration) !== this.options.animationDurationDefault) {
+            this.hostStyleTransition = 'opacity ' + this.options.animationDuration + 'ms';
         }
     }
 
-    setStyles() {
+    setStyles(): void {
         this.setZIndex();
         this.setPointerEvents();
         this.setAnimationDuration();
 
-        this.hostClassShadow = this.options['shadow'];
+        this.hostClassShadow = this.options.shadow;
         this.hostClassLight = this.isThemeLight;
-        this.hostStyleMaxWidth = this.options['maxWidth'] + "px";
-        this.hostStyleWidth = this.options['width'] ? this.options['width'] + "px" : '';
+        this.hostStyleMaxWidth = this.options.maxWidth + 'px';
+        this.hostStyleWidth = this.options.width ? this.options.width + 'px' : '';
     }
 }
