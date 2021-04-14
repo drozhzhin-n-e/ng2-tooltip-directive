@@ -1,4 +1,18 @@
-import { Directive, ElementRef, HostListener, Input, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef, Injector, ComponentRef, OnInit, Output, EventEmitter, OnDestroy, Inject, Optional } from '@angular/core';
+import {
+    Directive,
+    ElementRef,
+    HostListener,
+    Input,
+    ComponentFactoryResolver,
+    EmbeddedViewRef,
+    ApplicationRef,
+    Injector,
+    Output,
+    EventEmitter,
+    Inject,
+    Optional,
+    TemplateRef
+} from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 import { TooltipOptionsService } from './tooltip-options.service';
 import { defaultOptions, backwardCompatibilityOptions } from './options';
@@ -25,8 +39,8 @@ export class TooltipDirective {
     showTimeoutId: number;
     componentRef: any;
     elementPosition: any;
-    _showDelay: any = 0;
-    _hideDelay: number = 300;
+    _showDelay = 0;
+    _hideDelay = 300;
     _id: any;
     _options: any = {};
     _defaultOptions: any;
@@ -38,11 +52,11 @@ export class TooltipDirective {
             this._options = value;
         }
     }
-    get options() {
+    get options(): TooltipOptions {
         return this._options;
     }
 
-    @Input('tooltip') tooltipValue: string;
+    @Input('tooltip') tooltipValue: string | TemplateRef<any>;
     @Input('placement') placement: string;
     @Input('autoPlacement') autoPlacement: boolean;
     @Input('content-type') contentType: string;
@@ -67,24 +81,25 @@ export class TooltipDirective {
     @Input('pointerEvents') pointerEvents: 'auto' | 'none';
     @Input('position') position: {top: number, left: number};
 
-    get isTooltipDestroyed() {
+    get isTooltipDestroyed(): any {
         return this.componentRef && this.componentRef.hostView.destroyed;
     }
 
-    get destroyDelay() {
+    get destroyDelay(): number {
         if (this._destroyDelay) {
             return this._destroyDelay;
         } else {
-            return Number(this.getHideDelay()) + Number(this.options['animationDuration']);
+            return Number(this.getHideDelay()) + Number(this.options.animationDuration);
         }
     }
+
     set destroyDelay(value: number) {
         this._destroyDelay = value;
     }
 
-    get tooltipPosition() {
-        if (this.options['position']) {
-            return this.options['position'];
+    get tooltipPosition(): any {
+        if (this.options.position) {
+            return this.options.position;
         } else {
             return this.elementPosition;
         }
@@ -101,8 +116,8 @@ export class TooltipDirective {
 
     @HostListener('focusin')
     @HostListener('mouseenter')
-    onMouseEnter() {
-        if (this.isDisplayOnHover == false) {
+    onMouseEnter(): void {
+        if (this.isDisplayOnHover === false) {
             return;
         }
 
@@ -111,28 +126,25 @@ export class TooltipDirective {
 
     @HostListener('focusout')
     @HostListener('mouseleave')
-    onMouseLeave() {
-        if (this.options['trigger'] === 'hover') {
+    onMouseLeave(): void {
+        if (this.options.trigger === 'hover') {
             this.destroyTooltip();
         }
     }
 
     @HostListener('click')
-    onClick() {
-        if (this.isDisplayOnClick == false) {
+    onClick(): void {
+        if (this.isDisplayOnClick === false) {
             return;
         }
 
         this.show();
         this.hideAfterClickTimeoutId = window.setTimeout(() => {
             this.destroyTooltip();
-        }, this.options['hideDelayAfterClick'])
+        }, this.options.hideDelayAfterClick);
     }
 
-    ngOnInit(): void {
-    }
-
-    ngOnChanges(changes) {
+    ngOnChanges(changes): void {
         this.initOptions = this.renameProperties(this.initOptions);
         let changedOptions = this.getProperties(changes);
         changedOptions = this.renameProperties(changedOptions);
@@ -150,37 +162,35 @@ export class TooltipDirective {
         }
     }
 
-    getShowDelay() {
-        return this.options['showDelay'];
+    getShowDelay(): number {
+        return this.options.showDelay;
     }
 
-    getHideDelay() {
-        const hideDelay = this.options['hideDelay'];
-        const hideDelayTouchscreen = this.options['hideDelayTouchscreen'];
+    getHideDelay(): number {
+        const hideDelay = this.options.hideDelay;
+        const hideDelayTouchscreen = this.options.hideDelayTouchscreen;
 
         return this.isTouchScreen ? hideDelayTouchscreen : hideDelay;
     }
 
-    getProperties(changes){
-        let directiveProperties:any = {};
-        let customProperties:any = {};
-        let allProperties:any = {};
+    getProperties(changes): any {
+        const directiveProperties = {};
+        let customProperties = {};
 
-        for (var prop in changes) {
-            if (prop !== 'options' && prop !== 'tooltipValue'){
+        for (const prop in changes) {
+            if (prop !== 'options' && prop !== 'tooltipValue') {
                 directiveProperties[prop] = changes[prop].currentValue;
             }
-            if (prop === 'options'){
+            if (prop === 'options') {
                 customProperties = changes[prop].currentValue;
             }
         }
 
-        allProperties = Object.assign({}, customProperties, directiveProperties);
-        return allProperties;
+        return Object.assign({}, customProperties, directiveProperties);
     }
 
-    renameProperties(options: TooltipOptions) {
-        for (var prop in options) {
+    renameProperties(options: TooltipOptions): TooltipOptions {
+        for (const prop in options) {
             if (backwardCompatibilityOptions[prop]) {
                 options[backwardCompatibilityOptions[prop]] = options[prop];
                 delete options[prop];
@@ -212,7 +222,7 @@ export class TooltipDirective {
     }): void {
         this.clearTimeouts();
 
-        if (this.isTooltipDestroyed == false) {
+        if (this.isTooltipDestroyed === false) {
             this.hideTimeoutId = window.setTimeout(() => {
                 this.hideTooltip();
             }, options.fast ? 0 : this.getHideDelay());
@@ -225,7 +235,7 @@ export class TooltipDirective {
                 this.appRef.detachView(this.componentRef.hostView);
                 this.componentRef.destroy();
                 this.events.emit({
-                    type: 'hidden', 
+                    type: 'hidden',
                     position: this.tooltipPosition
                 });
             }, options.fast ? 0 : this.destroyDelay);
@@ -234,7 +244,7 @@ export class TooltipDirective {
 
     showTooltipElem(): void {
         this.clearTimeouts();
-        ( < AdComponent > this.componentRef.instance).show = true;
+        (this.componentRef.instance as AdComponent).show = true;
         this.events.emit({
             type: 'show',
             position: this.tooltipPosition
@@ -245,7 +255,7 @@ export class TooltipDirective {
         if (!this.componentRef || this.isTooltipDestroyed) {
             return;
         }
-        ( < AdComponent > this.componentRef.instance).show = false;
+        (this.componentRef.instance as AdComponent).show = false;
         this.events.emit({
             type: 'hide',
             position: this.tooltipPosition
@@ -257,17 +267,17 @@ export class TooltipDirective {
             .resolveComponentFactory(component)
             .create(this.injector);
 
-        ( < AdComponent > this.componentRef.instance).data = {
+        (this.componentRef.instance as AdComponent).data = {
             value: this.tooltipValue,
             element: this.elementRef.nativeElement,
             elementPosition: this.tooltipPosition,
             options: this.options
-        }
+        };
         this.appRef.attachView(this.componentRef.hostView);
         const domElem = (this.componentRef.hostView as EmbeddedViewRef < any > ).rootNodes[0] as HTMLElement;
         document.body.appendChild(domElem);
 
-        this.componentSubscribe = ( < AdComponent > this.componentRef.instance).events.subscribe((event: any) => {
+        this.componentSubscribe = (this.componentRef.instance as AdComponent).events.subscribe((event: any) => {
             this.handleEvents(event);
         });
     }
@@ -291,15 +301,15 @@ export class TooltipDirective {
     }
 
     get isDisplayOnHover(): boolean {
-        if (this.options['display'] == false) {
+        if (this.options.display === false) {
             return false;
         }
 
-        if (this.options['displayTouchscreen'] == false && this.isTouchScreen) {
+        if (this.options.displayTouchscreen === false && this.isTouchScreen) {
             return false;
         }
 
-        if (this.options['trigger'] !== 'hover') {
+        if (this.options.trigger !== 'hover') {
             return false;
         }
 
@@ -307,26 +317,24 @@ export class TooltipDirective {
     }
 
     get isDisplayOnClick(): boolean {
-        if (this.options['display'] == false) {
+        if (this.options.display === false) {
             return false;
         }
 
-        if (this.options['displayTouchscreen'] == false && this.isTouchScreen) {
+        if (this.options.displayTouchscreen === false && this.isTouchScreen) {
             return false;
         }
 
-        if (this.options['trigger'] != 'click') {
+        if (this.options.trigger !== 'click') {
             return false;
         }
 
         return true;
     }
 
-    get isTouchScreen() {
-        var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-        var mq = function(query) {
-            return window.matchMedia(query).matches;
-        }
+    get isTouchScreen(): boolean {
+        const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+        const mq = (query) => window.matchMedia(query).matches;
 
         if (('ontouchstart' in window)) {
             return true;
@@ -334,15 +342,15 @@ export class TooltipDirective {
 
         // include the 'heartz' as a way to have a non matching MQ to help terminate the join
         // https://git.io/vznFH
-        var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-        return mq(query);
+        const queryStr = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+        return mq(queryStr);
     }
 
     applyOptionsDefault(defaultOptions, options): void {
         this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
     }
 
-    handleEvents(event: any) {
+    handleEvents(event: any): void {
         if (event.type === 'shown') {
             this.events.emit({
                 type: 'shown',
@@ -351,7 +359,7 @@ export class TooltipDirective {
         }
     }
 
-    public show() {
+    public show(): void {
         if (!this.componentRef || this.isTooltipDestroyed) {
             this.createTooltip();
         } else if (!this.isTooltipDestroyed) {
@@ -359,7 +367,7 @@ export class TooltipDirective {
         }
     }
 
-    public hide() {
+    public hide(): void {
         this.destroyTooltip();
     }
 }
