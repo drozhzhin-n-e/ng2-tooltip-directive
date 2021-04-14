@@ -1,5 +1,7 @@
 export interface TooltipOptions {
     'placement'?: string;
+    'animationDuration'?: number;
+    'animationDurationDefault'?: number;
     'autoPlacement'?: boolean;
     'content-type'?: 'string' | 'html' | 'template';
     'delay'?: number;
@@ -24,4 +26,9 @@ export interface TooltipOptions {
     'hideDelayAfterClick'?: number;
     'pointerEvents'?: 'auto' | 'none';
     'position'?: {top: number, left: number};
+    'showDelay'?: number;
+    'hideDelay'?: number;
+    'tooltipClass'?: string;
+    'maxWidth'?: number;
+    'zIndex'?: number;
 }
