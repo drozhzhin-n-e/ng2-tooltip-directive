@@ -11,7 +11,7 @@ import { TooltipOptions } from './tooltip-options.interface';
     styleUrls: ['./tooltip.component.sass']
 })
 export class TooltipComponent implements OnInit {
-    _show = false;
+    isVisible = false;
     events = new EventEmitter();
     ContentType = ContentType;
 
@@ -41,11 +41,11 @@ export class TooltipComponent implements OnInit {
         if (value) {
             this.setPosition();
         }
-        this._show = this.hostClassShow = value;
+        this.isVisible = this.hostClassShow = value;
     }
 
     get show(): boolean {
-        return this._show;
+        return this.isVisible;
     }
 
     get placement(): string {
