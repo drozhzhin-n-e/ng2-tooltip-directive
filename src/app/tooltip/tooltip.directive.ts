@@ -29,7 +29,6 @@ export interface AdComponent {
     selector: '[tooltip]',
     exportAs: 'tooltip',
 })
-
 export class TooltipDirective {
 
     hideTimeoutId: number;
@@ -39,11 +38,7 @@ export class TooltipDirective {
     showTimeoutId: number;
     componentRef: any;
     elementPosition: any;
-    _showDelay = 0;
-    _hideDelay = 300;
-    _id: any;
     _options: any = {};
-    _defaultOptions: any;
     _destroyDelay: number;
     componentSubscribe: any;
 
@@ -59,7 +54,7 @@ export class TooltipDirective {
     @Input('tooltip') tooltipValue: string | TemplateRef<any>;
     @Input('placement') placement: string;
     @Input('autoPlacement') autoPlacement: boolean;
-    @Input('content-type') contentType: string;
+    @Input('contentType') contentType: string;
     @Input('hide-delay-mobile') hideDelayMobile: number;
     @Input('hideDelayTouchscreen') hideDelayTouchscreen: number;
     @Input('z-index') zIndex: number;
@@ -70,7 +65,7 @@ export class TooltipDirective {
     @Input('display-mobile') displayMobile: boolean;
     @Input('displayTouchscreen') displayTouchscreen: boolean;
     @Input('shadow') shadow: boolean;
-    @Input('theme') theme: boolean;
+    @Input('theme') theme: string;
     @Input('offset') offset: number;
     @Input('width') width: number;
     @Input('max-width') maxWidth: number;
@@ -112,7 +107,8 @@ export class TooltipDirective {
         private elementRef: ElementRef,
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
-        private injector: Injector) {}
+        private injector: Injector
+    ) {}
 
     @HostListener('focusin')
     @HostListener('mouseenter')
@@ -149,7 +145,7 @@ export class TooltipDirective {
         let changedOptions = this.getProperties(changes);
         changedOptions = this.renameProperties(changedOptions);
 
-        this.applyOptionsDefault(defaultOptions, changedOptions);
+        this.applyOptionsDefault(changedOptions);
     }
 
     ngOnDestroy(): void {
@@ -346,7 +342,7 @@ export class TooltipDirective {
         return mq(queryStr);
     }
 
-    applyOptionsDefault(defaultOptions, options): void {
+    applyOptionsDefault(options): void {
         this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
     }
 

@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, HostBinding, Input, EventEmitter, Renderer2, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { ContentType, Placement, Theme } from './tooltip-enums';
 import { TooltipOptions } from './tooltip-options.interface';
 
 @Component({
@@ -9,10 +10,10 @@ import { TooltipOptions } from './tooltip-options.interface';
     },
     styleUrls: ['./tooltip.component.sass']
 })
-
 export class TooltipComponent implements OnInit {
     _show = false;
     events = new EventEmitter();
+    ContentType = ContentType;
 
     @Input() data: any;
 
@@ -42,6 +43,7 @@ export class TooltipComponent implements OnInit {
         }
         this._show = this.hostClassShow = value;
     }
+
     get show(): boolean {
         return this._show;
     }
@@ -75,7 +77,7 @@ export class TooltipComponent implements OnInit {
     }
 
     get isThemeLight(): boolean {
-        return this.options.theme === 'light';
+        return this.options.theme === Theme.Light;
     }
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
@@ -91,7 +93,7 @@ export class TooltipComponent implements OnInit {
             return;
         } else {
             /* Is tooltip outside the visible area */
-            const placements = ['top', 'right', 'bottom', 'left'];
+            const placements = [Placement.Top, Placement.Right, Placement.Bottom, Placement.Left];
             let isPlacementSet;
 
             for (const placement of placements) {
@@ -133,27 +135,27 @@ export class TooltipComponent implements OnInit {
         let topStyle;
         let leftStyle;
 
-        if (placement === 'top') {
+        if (placement === Placement.Top) {
             topStyle = (this.elementPosition.top + scrollY) - (tooltipHeight + this.tooltipOffset);
         }
 
-        if (placement === 'bottom') {
+        if (placement === Placement.Bottom) {
             topStyle = (this.elementPosition.top + scrollY) + elementHeight + this.tooltipOffset;
         }
 
-        if (placement === 'top' || placement === 'bottom') {
+        if (placement === Placement.Top || placement === Placement.Bottom) {
             leftStyle = (this.elementPosition.left + elementWidth / 2) - tooltipWidth / 2;
         }
 
-        if (placement === 'left') {
+        if (placement === Placement.Left) {
             leftStyle = this.elementPosition.left - tooltipWidth - this.tooltipOffset;
         }
 
-        if (placement === 'right') {
+        if (placement === Placement.Right) {
             leftStyle = this.elementPosition.left + elementWidth + this.tooltipOffset;
         }
 
-        if (placement === 'left' || placement === 'right') {
+        if (placement === Placement.Left || placement === Placement.Right) {
             topStyle = (this.elementPosition.top + scrollY) + elementHeight / 2 - tooltip.clientHeight / 2;
         }
 

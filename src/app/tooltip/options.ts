@@ -1,7 +1,9 @@
+import { ContentType, Theme } from './tooltip-enums';
+
 export const defaultOptions = {
   placement: 'top',
   autoPlacement: true,
-  contentType: 'string',
+  contentType: ContentType.String,
   showDelay: 0,
   hideDelay: 300,
   hideDelayMobile: 0,
@@ -15,7 +17,7 @@ export const defaultOptions = {
   displayMobile: true,
   displayTouchscreen: true,
   shadow: true,
-  theme: 'dark',
+  theme: Theme.Dark,
   offset: 8,
   maxWidth: '',
   id: false,

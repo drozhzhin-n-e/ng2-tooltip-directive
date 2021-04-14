@@ -1,9 +1,11 @@
+import { ContentType, Theme } from './tooltip-enums';
+
 export interface TooltipOptions {
     'placement'?: string;
     'animationDuration'?: number;
     'animationDurationDefault'?: number;
     'autoPlacement'?: boolean;
-    'content-type'?: 'string' | 'html' | 'template';
+    'contentType'?: ContentType.String | ContentType.Html | ContentType.Template;
     'delay'?: number;
     'show-delay'?: number;
     'hide-delay'?: number;
@@ -18,7 +20,7 @@ export interface TooltipOptions {
     'display-mobile'?: boolean;
     'displayTouchscreen'?: boolean;
     'shadow'?: boolean;
-    'theme'?: string;
+    'theme'?: Theme.Light | Theme.Dark;
     'offset'?: number;
     'width'?: number;
     'max-width'?: number;

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-//import { TooltipModule } from 'ng2-tooltip-directive';
 import { TooltipModule } from './tooltip';
 
 @NgModule({
@@ -19,4 +18,4 @@ import { TooltipModule } from './tooltip';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
