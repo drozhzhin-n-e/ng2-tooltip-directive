@@ -25,7 +25,7 @@ export interface TooltipOptions {
     'displayMobile'?: boolean;
     'displayTouchscreen'?: boolean;
     'shadow'?: boolean;
-    'theme'?: string;
+    'theme'?: "dark" | "light";
     'offset'?: number;
     'width'?: string;
     'max-width'?: string;

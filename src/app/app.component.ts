@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'tooltipNg12App';
+  handleTooltipEvents(event:string){
+    console.log(event);
+  }
 }

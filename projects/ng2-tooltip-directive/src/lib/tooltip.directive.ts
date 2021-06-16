@@ -121,7 +121,7 @@ export class TooltipDirective {
     @Input('display-mobile') displayMobile!: boolean;
     @Input('displayTouchscreen') displayTouchscreen!: boolean;
     @Input('shadow') shadow!: boolean;
-    @Input('theme') theme!: boolean;
+    @Input('theme') theme!: "dark" | "light";
     @Input('offset') offset!: number;
     @Input('width') width!: string;
 
