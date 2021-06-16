@@ -92,21 +92,21 @@ import { MyDefaultTooltipOptions } from './my-default-options';
 |------------------|-------------------------------------|---------|---------------------------------------------|
 | placement        | "top", "bottom", "left", "right"    | "top"   | The position of the tooltip.                |
 | autoPlacement    | boolean                             | true    | Place the tooltip so that it does not go beyond the borders of the browser window. |
-| show-delay       | number                              | 0       | The delay in ms before showing the tooltip. |
-| hide-delay       | number                              | 300     | The delay in ms before removing the tooltip. |
+| showDelay       | number                              | 0       | The delay in ms before showing the tooltip. |
+| hideDelay       | number                              | 300     | The delay in ms before removing the tooltip. |
 | hideDelayTouchscreen | number                          | 0       | Delay in milliseconds before hiding the tooltip (for mobile devices). |
 | display          | boolean                             | true    | Tooltip availability for display.           |
 | displayTouchscreen | boolean                           | true    | Display the tooltip on mobile devices.      |
-| z-index          | number                              | 0       | Z-index of the tooltip.                     |
+| zIndex          | number                              | 0       | Z-index of the tooltip.                     |
 | trigger          | "hover", "click"                    | "hover" | Specifies how the tooltip is triggered. Control the closing time with "hide-delay". |
-| tooltip-class    | string                              |         | Classes to be passed to the tooltip.        |
-| animation-duration | number                            | 300     | The duration controls how long the animation takes to run from start to finish. |
+| tooltipClass    | string                              |         | Classes to be passed to the tooltip.        |
+| animationDuration | number                            | 300     | The duration controls how long the animation takes to run from start to finish. |
 | theme            | "dark", "light"                     | "dark"  | Theme of tooltip background and text.       |
 | shadow           | boolean                             | true    | Shadow of the tooltip.                      |
 | offset           | number                              | 8       | Offset the tooltip relative to the item.    |
 | width            | number                              | undefined | Width of the tooltip.                     |
-| max-width        | number                              | 200     | Maximum width of the tooltip.               |
-| content-type     | "string", "html', "template"        | "string" | The content type passed to the tooltip.    |
+| maxWidth        | number                              | 200     | Maximum width of the tooltip.               |
+| contentType     | "string", "html', "template"        | "string" | The content type passed to the tooltip.    |
 | hideDelayAfterClick | number                           | 2000    | Tooltip hiding delay for "click" trigger.   |
 | pointerEvents    | "auto", "none"                      | "none"  | Defines whether or not an element reacts to pointer events. |
 | position         | {top: number, left: number}         | undefined | The tooltip coordinates relative to the browser window. |
