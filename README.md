@@ -135,4 +135,4 @@ If you specified the directive options, they will be taken into account when cal
 
 We use Browserstack for cross-browser testing.
 
-[![Browserstack](http://ivylab.space/assets/img/browserstack.png)](http://browserstack.com/)
+[![Browserstack](http://ivylab.space/assets/img/browserstack-logo.png)](http://browserstack.com/)
