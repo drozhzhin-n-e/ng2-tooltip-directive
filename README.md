@@ -30,7 +30,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
 Options can be set in the directive tag, so they have the highest priority.
 
 ```html
-<span tooltip="Tooltip" placement="top" show-delay="500">Tooltip on top</span>
+<span tooltip="Tooltip" placement="top" showDelay="500">Tooltip on top</span>
 ```
 
 You may pass as an object:
@@ -41,7 +41,7 @@ You may pass as an object:
 ```ts
 myOptions = {
     'placement': 'left',
-    'show-delay': 500
+    'showDelay': 500
 }
 ```
 
@@ -58,7 +58,7 @@ You can pass HTML as content :
   <p>Hello i'm a <strong>bold</strong> text!</p>
 </ng-template>
 
-<span [tooltip]="HtmlContent" content-type="template">
+<span [tooltip]="HtmlContent" contentType="template">
   Tooltip with template content
 </span>
 ```
