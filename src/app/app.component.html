@@ -1,88 +1,97 @@
-<h3>Properties</h3>
+<h1>Properties</h1>
 
+<h2>placement</h2>
 <p>
-    <button ngDraggable tooltip="Drag me any where and see the adjustment of the tooltip auto placing">Tooltip auto placement</button>
-</p>
-<p>
-    <button tooltip="Tooltip on right" placement="right">Tooltip on right</button>
-</p>
-<p>
-    <button tooltip="Simple and <b>bold text</b>">Tooltip with HTML content</button>
-</p>
-<p>
-    <button tooltip="Show delay 1000ms" [show-delay]="1000">Show delay 1000ms</button>
-</p>
-<p>
-    <button tooltip="Hide delay 1000ms" [hide-delay]="1000">Hide delay 1000ms</button>
-</p>
-<p>
-    <button tooltip="Hide delay on touch screen 2000ms" [hideDelayTouchscreen]="2000">Hide delay on touch screen 2000ms</button>
-</p>
-<p>
-    <button tooltip="Z-index 1000" [z-index]="1000">Z-index 1000</button>
-</p>
-<p>
-    <button tooltip="Animation duration 1000ms" [animation-duration]="1000">Animation duration 1000ms</button>
-</p>
-<p>
-    <button tooltip="On click" [trigger]="'click'">On click</button>
-</p>
-<p>
-    <button tooltip="Custom class" [tooltip-class]="'custom-class'">Custom class</button>
-</p>
-<p>
-    <button tooltip="Disabled" [display]="false">Disabled</button>
-</p>
-<p>
-    <button tooltip="Disabled on touch screen" [displayTouchscreen]="false">Disabled on touch screen</button>
-</p>
-<p>
-    <button tooltip="Without a shadow" [shadow]="false">Without a shadow</button>
-</p>
-<p>
-    <button tooltip="Light theme" [theme]="'light'">Light theme</button>
-</p>
-<p>
-    <button tooltip="Offset 16px" [offset]="16">Offset 16px</button>
-</p>
-<p>
-    <button tooltip="Maximum width 100 pixels" [max-width]="100">Maximum width 100 pixels</button>
-</p>
-<p>
-    <button tooltip="Pointer events auto" [pointerEvents]="'auto'" [hide-delay]="1000">Pointer events auto</button>
-</p>
-<p>
-    <button tooltip="Width 200 pixels" [width]="200">Width 200 pixels</button>
-</p>
-<p>
-    <button tooltip="Custom position" placement="bottom" [position]="{top: 0, left: 200}">Custom position</button>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Tooltip on top" placement="top">Top</button>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Tooltip on bottom" placement="bottom">Bottom</button>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Tooltip on left" placement="left">Left</button>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Tooltip on right" placement="right">Right</button>
 </p>
 
-<h3>Events</h3>
+<h2>autoPlacement</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" ngDraggable tooltip="Drag me any where and see the adjustment of the tooltip auto placing" placement="left">Drag me</button>
+</p>
 
-<button
-    tooltip="Tooltip"
-    placement="top"
-    (events)="handleTooltipEvents($event)">Tooltip on top</button>
+<h2>showDelay</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Show delay 1000ms" placement="left" [showDelay]="1000">Show delay 1000ms</button>
+</p>
 
-<button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-    placement="top"
-    show-delay="500"
-    (events)="handleTooltipEvents($event)">Tooltip on top, show delay 500ms</button>
+<h2>hideDelay</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Hide delay 1000ms" placement="left" [hideDelay]="1000">Hide delay 1000ms</button>
+</p>
 
-<button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-    placement="top"
-    trigger="click"
-    hide-delay="1000"
-    (events)="handleTooltipEvents($event)">Click me, hide delay 1s</button>
 
-<h3>Methods</h3>
+<h2>display</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Display false" [display]="false">Display false</button>
+</p>
 
-<button (click)="someTooltip.show()">Show tooltip</button>
-<button (click)="someTooltip.hide()">Hide tooltip</button>
+<h2>zIndex</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="zIndex 500" [zIndex]="500">zIndex 500</button>
+</p>
 
-<button
-    tooltip="Lorem ipsum dolor sit amet, his ut dicunt recteque ea."
-    id="someTooltip">Tooltip on top</button>
+<h2>trigger</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Trigger click" trigger="click">Trigger click</button>
+</p>
+
+<h2>tooltipClass</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Custom class" tooltipClass="custom-class">Custom class</button>
+</p>
+
+<h2>animationDuration</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Custom class" [animationDuration]="500">Animation duration 500ms</button>
+</p>
+
+<h2>theme</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Dark theme" theme="light">Light theme</button>
+</p>
+
+<h2>shadow</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Shadow" [shadow]="false">No shadow</button>
+</p>
+
+<h2>offset</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Offset 2px" [offset]="2">Offset 2px</button>
+</p>
+
+<h2>width</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Width 100 pixels" width="100px">Width 100 pixels</button>
+</p>
+
+<h2>max-width</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Max width 100 pixels" maxWidth="100px">Max width 100 pixels</button>
+</p>
+
+<h2>pointerEvents</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="pointerEvents: none" pointerEvents="auto">pointerEvents: auto</button>
+</p>
+
+<h2>position</h2>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="Custom position" [position]="{top: 0, left: 100}">Custom position</button>
+</p>
+
+
+<h1>Methods</h1>
+<div tooltip="Tooltip text" #myTooltip="tooltip"></div>
+
+<button class="btn btn-small btn-outline btn-rounded" (click)="myTooltip.show()">show()</button>
+<button class="btn btn-small btn-outline btn-rounded" (click)="myTooltip.hide()">hide()</button>
+
+<h1>Events</h1>
+<p>
+    <button class="btn btn-small btn-outline btn-rounded" tooltip="See console log" (events)="handleTooltipEvents($event)">Show</button>
+</p>

@@ -209,7 +209,7 @@ export class TooltipComponent {
 
         this.hostClassShadow = this.options['shadow'];
         this.hostClassLight = this.isThemeLight;
-        this.hostStyleMaxWidth = this.options['maxWidth'] + "px";
-        this.hostStyleWidth = this.options['width'] ? this.options['width'] + "px" : '';
+        this.hostStyleMaxWidth = this.options['maxWidth'];
+        this.hostStyleWidth = this.options['width'] ? this.options['width'] : '';
     }
 }

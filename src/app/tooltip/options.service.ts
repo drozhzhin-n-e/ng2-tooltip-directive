@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { TooltipOptions } from './tooltip-options.interface';
+import { TooltipOptions } from './options.interface';
 
 /**
  * This is not a real service, but it looks like it from the outside.

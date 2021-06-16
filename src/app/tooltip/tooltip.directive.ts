@@ -1,8 +1,8 @@
 import { Directive, ElementRef, HostListener, Input, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef, Injector, ComponentRef, OnInit, Output, EventEmitter, OnDestroy, Inject, Optional } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
-import { TooltipOptionsService } from './tooltip-options.service';
+import { TooltipOptionsService } from './options.service';
 import { defaultOptions, backwardCompatibilityOptions } from './options';
-import { TooltipOptions } from './tooltip-options.interface';
+import { TooltipOptions } from './options.interface';
 
 export interface AdComponent {
     data: any;
@@ -25,13 +25,18 @@ export class TooltipDirective {
     showTimeoutId: number;
     componentRef: any;
     elementPosition: any;
-    _showDelay: any = 0;
-    _hideDelay: number = 300;
     _id: any;
     _options: any = {};
     _defaultOptions: any;
     _destroyDelay: number;
     componentSubscribe: any;
+    _contentType: "string" | "html" | "template";
+    _showDelay: number;
+    _hideDelay: number;
+    _zIndex: number;
+    _tooltipClass: string;
+    _animationDuration: number;
+    _maxWidth: string;
 
     @Input('options') set options(value: TooltipOptions) {
         if (value && defaultOptions) {
@@ -45,24 +50,129 @@ export class TooltipDirective {
     @Input('tooltip') tooltipValue: string;
     @Input('placement') placement: string;
     @Input('autoPlacement') autoPlacement: boolean;
-    @Input('content-type') contentType: string;
+
+    // Content type
+    @Input('content-type') set contentTypeBackwardCompatibility(value: "string" | "html" | "template") {
+        if (value) {
+            this._contentType = value;
+        }
+    }
+    @Input('contentType') set contentType(value: "string" | "html" | "template") {
+        if (value) {
+            this._contentType = value;
+        }
+    }
+    get contentType() {
+        return this._contentType;
+    }
+
     @Input('hide-delay-mobile') hideDelayMobile: number;
     @Input('hideDelayTouchscreen') hideDelayTouchscreen: number;
-    @Input('z-index') zIndex: number;
-    @Input('animation-duration') animationDuration: number;
+
+    // z-index
+    @Input('z-index') set zIndexBackwardCompatibility(value: number) {
+        if (value) {
+            this._zIndex = value;
+        }
+    }
+    @Input('zIndex') set zIndex(value: number) {
+        if (value) {
+            this._zIndex = value;
+        }
+    }
+    get zIndex() {
+        return this._zIndex;
+    }
+
+    // Animation duration
+    @Input('animation-duration') set animationDurationBackwardCompatibility(value: number) {
+        if (value) {
+            this._animationDuration = value;
+        }
+    }
+    @Input('animationDuration') set animationDuration(value: number) {
+        if (value) {
+            this._animationDuration = value;
+        }
+    }
+    get animationDuration() {
+        return this._animationDuration;
+    }
+
+
     @Input('trigger') trigger: string;
-    @Input('tooltip-class') tooltipClass: string;
+
+    // Tooltip class
+    @Input('tooltip-class') set tooltipClassBackwardCompatibility(value: string) {
+        if (value) {
+            this._tooltipClass = value;
+        }
+    }
+    @Input('tooltipClass') set tooltipClass(value: string) {
+        if (value) {
+            this._tooltipClass = value;
+        }
+    }
+    get tooltipClass() {
+        return this._tooltipClass;
+    }
+
     @Input('display') display: boolean;
     @Input('display-mobile') displayMobile: boolean;
     @Input('displayTouchscreen') displayTouchscreen: boolean;
     @Input('shadow') shadow: boolean;
     @Input('theme') theme: boolean;
     @Input('offset') offset: number;
-    @Input('width') width: number;
-    @Input('max-width') maxWidth: number;
+    @Input('width') width: string;
+
+    // Max width
+    @Input('max-width') set maxWidthBackwardCompatibility(value: string) {
+        if (value) {
+            this._maxWidth = value;
+        }
+    }
+    @Input('maxWidth') set maxWidth(value: string) {
+        if (value) {
+            this._maxWidth = value;
+        }
+    }
+    get maxWidth() {
+        return this._maxWidth;
+    }
+
+
     @Input('id') id: any;
-    @Input('show-delay') showDelay: number;
-    @Input('hide-delay') hideDelay: number;
+
+    // Show delay
+    @Input('show-delay') set showDelayBackwardCompatibility(value: number) {
+        if (value) {
+            this._showDelay = value;
+        }
+    }
+    @Input('showDelay') set showDelay(value: number) {
+        if (value) {
+            this._showDelay = value;
+        }
+    }
+    get showDelay() {
+        return this._showDelay;
+    }
+
+    // Hide delay
+    @Input('hide-delay') set hideDelayBackwardCompatibility(value: number) {
+        if (value) {
+            this._hideDelay = value;
+        }
+    }
+    @Input('hideDelay') set hideDelay(value: number) {
+        if (value) {
+            this._hideDelay = value;
+        }
+    }
+    get hideDelay() {
+        return this._hideDelay;
+    }
+
     @Input('hideDelayAfterClick') hideDelayAfterClick: number;
     @Input('pointerEvents') pointerEvents: 'auto' | 'none';
     @Input('position') position: {top: number, left: number};
