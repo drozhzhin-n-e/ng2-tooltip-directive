@@ -1,11 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-//import { TooltipModule } from 'ng2-tooltip-directive';
-import { TooltipModule } from './tooltip';
 
 @NgModule({
   declarations: [
@@ -13,8 +10,7 @@ import { TooltipModule } from './tooltip';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    TooltipModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
