@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef, Injector, ComponentRef, OnInit, Output, EventEmitter, OnDestroy, Inject, Optional } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, ComponentFactoryResolver, EmbeddedViewRef, ApplicationRef, Injector, ComponentRef, OnInit, Output, EventEmitter, OnDestroy, Inject, Optional, SimpleChanges } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 import { TooltipOptionsService } from './options.service';
 import { defaultOptions, backwardCompatibilityOptions } from './options';
@@ -18,25 +18,25 @@ export interface AdComponent {
 
 export class TooltipDirective {
 
-    hideTimeoutId: number;
-    destroyTimeoutId: number;
-    hideAfterClickTimeoutId: number;
-    createTimeoutId: number;
-    showTimeoutId: number;
+    hideTimeoutId!: number;
+    destroyTimeoutId!: number;
+    hideAfterClickTimeoutId!: number;
+    createTimeoutId!: number;
+    showTimeoutId!: number;
     componentRef: any;
     elementPosition: any;
     _id: any;
     _options: any = {};
     _defaultOptions: any;
-    _destroyDelay: number;
+    _destroyDelay!: number;
     componentSubscribe: any;
-    _contentType: "string" | "html" | "template";
-    _showDelay: number;
-    _hideDelay: number;
-    _zIndex: number;
-    _tooltipClass: string;
-    _animationDuration: number;
-    _maxWidth: string;
+    _contentType: "string" | "html" | "template" = "string";
+    _showDelay!: number;
+    _hideDelay!: number;
+    _zIndex!: number;
+    _tooltipClass!: string;
+    _animationDuration!: number;
+    _maxWidth!: string;
 
     @Input('options') set options(value: TooltipOptions) {
         if (value && defaultOptions) {
@@ -47,9 +47,9 @@ export class TooltipDirective {
         return this._options;
     }
 
-    @Input('tooltip') tooltipValue: string;
-    @Input('placement') placement: string;
-    @Input('autoPlacement') autoPlacement: boolean;
+    @Input('tooltip') tooltipValue!: string;
+    @Input('placement') placement!: string;
+    @Input('autoPlacement') autoPlacement!: boolean;
 
     // Content type
     @Input('content-type') set contentTypeBackwardCompatibility(value: "string" | "html" | "template") {
@@ -66,8 +66,8 @@ export class TooltipDirective {
         return this._contentType;
     }
 
-    @Input('hide-delay-mobile') hideDelayMobile: number;
-    @Input('hideDelayTouchscreen') hideDelayTouchscreen: number;
+    @Input('hide-delay-mobile') hideDelayMobile!: number;
+    @Input('hideDelayTouchscreen') hideDelayTouchscreen!: number;
 
     // z-index
     @Input('z-index') set zIndexBackwardCompatibility(value: number) {
@@ -100,7 +100,7 @@ export class TooltipDirective {
     }
 
 
-    @Input('trigger') trigger: string;
+    @Input('trigger') trigger!: string;
 
     // Tooltip class
     @Input('tooltip-class') set tooltipClassBackwardCompatibility(value: string) {
@@ -117,13 +117,13 @@ export class TooltipDirective {
         return this._tooltipClass;
     }
 
-    @Input('display') display: boolean;
-    @Input('display-mobile') displayMobile: boolean;
-    @Input('displayTouchscreen') displayTouchscreen: boolean;
-    @Input('shadow') shadow: boolean;
-    @Input('theme') theme: boolean;
-    @Input('offset') offset: number;
-    @Input('width') width: string;
+    @Input('display') display!: boolean;
+    @Input('display-mobile') displayMobile!: boolean;
+    @Input('displayTouchscreen') displayTouchscreen!: boolean;
+    @Input('shadow') shadow!: boolean;
+    @Input('theme') theme!: boolean;
+    @Input('offset') offset!: number;
+    @Input('width') width!: string;
 
     // Max width
     @Input('max-width') set maxWidthBackwardCompatibility(value: string) {
@@ -173,9 +173,9 @@ export class TooltipDirective {
         return this._hideDelay;
     }
 
-    @Input('hideDelayAfterClick') hideDelayAfterClick: number;
-    @Input('pointerEvents') pointerEvents: 'auto' | 'none';
-    @Input('position') position: {top: number, left: number};
+    @Input('hideDelayAfterClick') hideDelayAfterClick!: number;
+    @Input('pointerEvents') pointerEvents!: 'auto' | 'none';
+    @Input('position') position!: {top: number, left: number};
 
     get isTooltipDestroyed() {
         return this.componentRef && this.componentRef.hostView.destroyed;
@@ -203,7 +203,7 @@ export class TooltipDirective {
     @Output() events: EventEmitter < any > = new EventEmitter < any > ();
 
     constructor(
-        @Optional() @Inject(TooltipOptionsService) private initOptions,
+        @Optional() @Inject(TooltipOptionsService) private initOptions:any,
         private elementRef: ElementRef,
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
@@ -242,7 +242,7 @@ export class TooltipDirective {
     ngOnInit(): void {
     }
 
-    ngOnChanges(changes) {
+    ngOnChanges(changes: SimpleChanges) {
         this.initOptions = this.renameProperties(this.initOptions);
         let changedOptions = this.getProperties(changes);
         changedOptions = this.renameProperties(changedOptions);
@@ -271,7 +271,7 @@ export class TooltipDirective {
         return this.isTouchScreen ? hideDelayTouchscreen : hideDelay;
     }
 
-    getProperties(changes){
+    getProperties(changes: SimpleChanges){
         let directiveProperties:any = {};
         let customProperties:any = {};
         let allProperties:any = {};
@@ -289,7 +289,7 @@ export class TooltipDirective {
         return allProperties;
     }
 
-    renameProperties(options: TooltipOptions) {
+    renameProperties(options:any) {
         for (var prop in options) {
             if (backwardCompatibilityOptions[prop]) {
                 options[backwardCompatibilityOptions[prop]] = options[prop];
@@ -434,7 +434,7 @@ export class TooltipDirective {
 
     get isTouchScreen() {
         var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-        var mq = function(query) {
+        var mq = function(query:any) {
             return window.matchMedia(query).matches;
         }
 
@@ -448,7 +448,7 @@ export class TooltipDirective {
         return mq(query);
     }
 
-    applyOptionsDefault(defaultOptions, options): void {
+    applyOptionsDefault(defaultOptions:any, options:any): void {
         this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
     }
 

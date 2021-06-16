@@ -22,7 +22,7 @@ export const defaultOptions = {
 	'hideDelayAfterClick': 2000
 }
 
-export const backwardCompatibilityOptions = {
+export const backwardCompatibilityOptions:any = {
     'delay': 'showDelay',
     'show-delay': 'showDelay',
     'hide-delay': 'hideDelay',
