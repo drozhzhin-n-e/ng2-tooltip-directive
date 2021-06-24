@@ -449,7 +449,7 @@ export class TooltipDirective {
     }
 
     applyOptionsDefault(defaultOptions:any, options:any): void {
-        this.options = Object.assign({}, defaultOptions, this.initOptions || {}, options);
+        this.options = Object.assign({}, defaultOptions, this.initOptions || {}, this.options, options);
     }
 
     handleEvents(event: any) {
@@ -462,6 +462,10 @@ export class TooltipDirective {
     }
 
     public show() {
+        if (!this.tooltipValue) {
+            return;
+        }
+
         if (!this.componentRef || this.isTooltipDestroyed) {
             this.createTooltip();
         } else if (!this.isTooltipDestroyed) {
