@@ -131,6 +131,10 @@ If you specified the directive options, they will be taken into account when cal
 | show()           | Shows the tooltip                                                                           |
 | hide()           | Hides the tooltip                                                                           |
 
+## Author services
+
+Are you interested in this library but lacks features? Write to the author, he can do it for you.
+
 ## Sponsors
 
 We use Browserstack for cross-browser testing.
