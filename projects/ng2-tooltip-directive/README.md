@@ -133,7 +133,7 @@ If you specified the directive options, they will be taken into account when cal
 
 ## Author services
 
-Are you interested in this library but lacks features? Write to the author, he can do it for you.
+Are you interested in this library but lacks features? [Write to the author](https://github.com/drozhzhin-n-e), he can do it for you.
 
 ## Sponsors
 
