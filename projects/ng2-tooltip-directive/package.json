@@ -24,10 +24,10 @@
     "url": "https://github.com/drozhzhin-n-e/ng2-tooltip-directive/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^10.0.5",
-    "@angular/core": "^10.0.5"
+    "@angular/common": "^13.3.11",
+    "@angular/core": "^13.3.11"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.4.1"
   }
 }
